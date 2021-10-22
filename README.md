@@ -17,7 +17,7 @@
 川の清掃などのボランティア、祭りや野外ライブなどのイベント
 
 ## 設計書
-<...>
+https://docs.google.com/spreadsheets/d/1k7Rf9TvH3CT58hc5di3C4GUcQNKu3lEMbYkharaNQ00/edit#gid=393959521
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/15SQLD4ojgG1YbZZcanifPOYA0eMudlEjlNM1DBXSj1I/edit#gid=0#gid=0
