@@ -1,24 +1,38 @@
 # README
+# good entry
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+主催者がどんなイベントやボランティアを開催するのかを告知する。<br>
+主催者がイベントやボランティアに対して思いや動機などを参加者側に伝える手助けをする。<br>
+参加者はイベントやボランティアの概要や日時を知り参加をするかしないかを決める。
 
-Things you may want to cover:
+### サイトテーマ
+主催者側は、イベントやボランティアに合った参加者を募集する。<br>
+参加者側は、自分に合ったイベントやボランティアを見つけ参加する。
 
-* Ruby version
+### テーマを選んだ理由
+自分の周りでも人手不足やイベントなどを知らないという事があり、掲示板では、告知が上手く良いてないと思いました。<br>
+そこで、ネットを活用して、告知や人の募集ができたらと考えました。<br>
+最後にサイトを通じて人々を良縁に導く手助けができないかと思いこのテーマにしました。
 
-* System dependencies
+### ターゲットユーザ
+参加者を応募したい主催者<br>
+自分に合ったイベントやボランティアに参加したい人
 
-* Configuration
+### 主な利用シーン
+祭り、野外ライブ、勉強会の告知<br>
+川の清掃、資源回収の手伝いの募集
 
-* Database creation
+## 設計書
+https://docs.google.com/spreadsheets/d/1k7Rf9TvH3CT58hc5di3C4GUcQNKu3lEMbYkharaNQ00/edit#gid=393959521
 
-* Database initialization
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/15SQLD4ojgG1YbZZcanifPOYA0eMudlEjlNM1DBXSj1I/edit#gid=0#gid=0
 
-* How to run the test suite
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
