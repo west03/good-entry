@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :hosts, controllers: {seessions: 'hosts/sessions', password: 'hosts/password'}
+  devise_for :guests, controllers: {sessions: 'guests/sessions', password: 'guests/password'}
+  devise_for :admins, controllers: {sessions: 'admins/sessions', password: 'admins/passwrd'}
+
 end
