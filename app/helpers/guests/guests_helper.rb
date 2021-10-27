@@ -1,0 +1,2 @@
+module Guests::GuestsHelper
+end

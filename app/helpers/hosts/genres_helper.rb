@@ -1,0 +1,2 @@
+module Hosts::GenresHelper
+end

@@ -1,0 +1,2 @@
+module Hosts::HomesHelper
+end

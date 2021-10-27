@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_121432) do
+ActiveRecord::Schema.define(version: 2021_10_27_090706) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,8 +32,14 @@ ActiveRecord::Schema.define(version: 2021_10_26_121432) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "events", force: :cascade do |t|
+  create_table "evemt_entries", force: :cascade do |t|
     t.integer "guest_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
     t.integer "host_id"
     t.integer "genre_id"
     t.string "title"
@@ -41,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_10_26_121432) do
     t.string "image_id"
     t.string "particpant"
     t.integer "prefecture"
-    t.string "adress"
+    t.string "address"
     t.string "date_and_time"
     t.integer "holding_flag"
     t.datetime "created_at", null: false

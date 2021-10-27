@@ -1,0 +1,2 @@
+module Hosts::HostsHelper
+end

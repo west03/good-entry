@@ -1,0 +1,2 @@
+class EvemtEntry < ApplicationRecord
+end

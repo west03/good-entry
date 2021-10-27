@@ -1,0 +1,2 @@
+module Hosts::GuestsHelper
+end
