@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <%= link_to hosts_root_path do %>
+    <%= image_tag 'スクリーンショット.png', size: '230x80' %>
+  <% end %>
+  <% if current_host.present? %>
+    <p>こんにちは、<%= current_host.name %>さん！</p>
+  <% else %>
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+       <li class="nav-item">
+        <%= link_to "マイページ", hosts_host_path(current_host.id) %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "イベント一覧", hosts_events_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "投稿イベント一覧", hosts_event_posts_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "ジャンル一覧", hosts_genres_path %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "ログアウト", destroy_host_session_path, method: :delete %>
+      </li>
+    </ul>
+  </div>
+</nav>

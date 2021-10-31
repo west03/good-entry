@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  has_many :event_entries
+  has_many :event_entries, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :tag_maps, dependent: :destroy

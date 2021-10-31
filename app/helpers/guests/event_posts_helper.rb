@@ -1,0 +1,2 @@
+module Guests::EventPostsHelper
+end

@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
 
-  devise_for :hosts, controllers: {sessions: 'hosts/devise/sessions', password: 'hosts/password'}
-  devise_for :guests, controllers: {sessions: 'guests/devise/sessions', password: 'guests/password'}
+  devise_for :hosts, controllers: {sessions: 'hosts/devise/sessions', password: 'hosts/password',
+                                   registrations: 'hosts/devise/registrations', password: 'hosts/password'}
+  devise_for :guests, controllers: {sessions: 'guests/devise/sessions', password: 'guests/password',
+                                    registrations: 'guests/devise/registrations', password: 'guest/password'}
   devise_for :admins, controllers: {sessions: 'admins/devise/sessions', password: 'admins/passwrd'}
 
   root to: 'homes#top'
   get 'about' => 'homes#about'
 
-  scope module: :gustes do
+  scope module: :guests do
     resource :guests, only:[:edit, :update]
-    get 'gustes/my_page' => 'gustes#show', as: 'my_page'
-    get 'gustes/unsubscribe' => 'gustes#unsubscribe'
-    patch 'gustes/withdraw' => 'gustes#withdraw'
+    get 'guests/my_page' => 'guests#show', as: 'my_page'
+    get 'guests/unsubscribe' => 'guests#unsubscribe'
+    patch 'guests/withdraw' => 'guests#withdraw'
     resources :hosts, only:[:index, :show]
     resources :events, only:[:index, :show]
     resources :event_entries, only:[:index, :update, :destroy, :create] do
@@ -19,7 +21,7 @@ Rails.application.routes.draw do
         delete 'destroy_all'
       end
     end
-    resources :event_post, only:[:index]
+    resources :event_posts, only:[:index]
   end
 
   namespace :hosts do
@@ -43,3 +45,4 @@ Rails.application.routes.draw do
   end
 
 end
+
