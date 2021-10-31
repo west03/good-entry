@@ -10,6 +10,19 @@
   </head>
 
   <body>
+    <header>
+      <div class="container">
+        <% if admin_signed_in? %>
+          <%= render 'layouts/header_admin' %>
+        <% elsif host_signed_in? %>
+          <%= render 'layouts/header_host' %>
+        <% elsif guest_signed_in? %>
+          <%= render 'layouts/header_guest' %>
+        <% else %>
+          <%= render 'layouts/header' %>
+        <% end %>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>

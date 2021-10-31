@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :hosts, controllers: {seessions: 'hosts/devise/sessions', password: 'hosts/password'}
+  devise_for :hosts, controllers: {sessions: 'hosts/devise/sessions', password: 'hosts/password'}
   devise_for :guests, controllers: {sessions: 'guests/devise/sessions', password: 'guests/password'}
   devise_for :admins, controllers: {sessions: 'admins/devise/sessions', password: 'admins/passwrd'}
 
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         delete 'destroy_all'
       end
     end
+    resources :event_post, only:[:index]
   end
 
   namespace :hosts do
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
     resources :events
     resources :guests, only:[:show]
     resources :genres, except:[:new, :show]
+    resources :event_posts, only:[:index]
   end
 
   namespace :admins do
@@ -36,6 +38,8 @@ Rails.application.routes.draw do
     resources :guests, except:[:new, :careate, :destroy]
     resources :hosts, except:[:new, :careate, :destroy]
     resources :events, except:[:new, :careate, :destroy]
+    resources :event_posts, only:[:index]
+    resources :event_guests, only:[:index]
   end
 
 end
