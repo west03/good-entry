@@ -1,0 +1,20 @@
+<div class="container">
+  <h2>マイページ</h2>
+  <div class="row my-3">
+    <p class="col-3">登録情報</p>
+    <p class="col-3"><%= link_to "編集する",  edit_hosts_host_path(@host.id) %></p>
+    <dvi class="col-6"></dvi>
+  </div>
+  <table border="1">
+    <tr><th class="col-3">名前</th><td class="col=9"><%= @host.name %></td><tr>
+    <tr><th class="col-3">郵便番号</th><td class="col=9"><%= @host.postal_code %></td><tr>
+    <tr><th class="col-3">住所</th><td class="col=9"><%= @host.address %></td><tr>
+    <tr><th class="col-3">電話番号</th><td class="col=9"><%= @host.telephone_number %></td><tr>
+    <tr><th class="col-3">メールアドレス</th><td class="col=9"><%= @host.email %></td><tr>
+  </table>
+  <div class="row my-3">
+    <p class="col-3">投稿イベント</p>
+    <p class="col-3"><%= link_to "一覧を見る",  event_posts_path %></p>
+    <dvi class="col-6"></dvi>
+  </div>
+</div>

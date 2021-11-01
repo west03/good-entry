@@ -25,10 +25,9 @@ Rails.application.routes.draw do
   end
 
   namespace :hosts do
-    root to: 'homes#top'
-    resources :hosts, only:[:show, :edit, :update]
-    get 'hosts/unsubscribe' => 'hosts#unsubscribe'
+    get 'hosts/unsubscribe' => 'hosts#unsubscribe', as: 'hosts_unsubscribe'
     patch 'hosts/withdraw' => 'hosts#withdraw'
+    resources :hosts, only:[:show, :edit, :update]
     resources :events
     resources :guests, only:[:show]
     resources :genres, except:[:new, :show]

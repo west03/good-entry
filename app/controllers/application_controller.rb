@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     when Admin
       admins_root_path
     when Host
-      hosts_root_path
+      hosts_host_path(current_host.id)
     when Guest
       root_path
     end
@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up,
                                       keys: %i[name last_name first_name last_name_kana first_name_kana postal_code
