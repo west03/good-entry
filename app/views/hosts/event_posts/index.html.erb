@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>イベント投稿一覧</h2>
+   <div class="ml-auto p-2 bd-highlight">
+     <%= button_to "+",   new_hosts_event_path, method: :get  %>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>ステータス</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each do |events| %>
+      <tr>
+        <td><%= events.title %></td>
+        <td><%= events.holding_flag %></td>
+        <td><%= link_to "詳細へ", hosts_event_path(events.id) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @events %>
+</div>

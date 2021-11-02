@@ -10,7 +10,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.integer :prefecture
       t.string :address
       t.string :date_and_time
-      t.integer :holding_flag
+      t.integer :holding_flag, default: 0
 
       t.timestamps
     end

@@ -49,12 +49,13 @@ ActiveRecord::Schema.define(version: 2021_10_27_090706) do
     t.integer "prefecture"
     t.string "address"
     t.string "date_and_time"
-    t.integer "holding_flag"
+    t.integer "holding_flag", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "genres", force: :cascade do |t|
+    t.string "host_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
