@@ -1,7 +1,11 @@
 class Guests::GuestsController < ApplicationController
-  def show; end
+  def show
+    @guest = current_guest
+  end
 
-  def edit; end
+  def edit
+    @guest = current_guest
+  end
 
   def update; end
 

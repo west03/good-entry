@@ -1,3 +1,5 @@
 class HomesController < ApplicationController
-  def top; end
+  def top
+    @event = Event.all.order(created_at: :desc)
+  end
 end

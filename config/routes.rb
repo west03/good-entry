@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-
   devise_for :hosts, controllers: {sessions: 'hosts/devise/sessions', password: 'hosts/password',
-                                   registrations: 'hosts/devise/registrations', password: 'hosts/password'}
-  devise_for :guests, controllers: {sessions: 'guests/devise/sessions', password: 'guests/password',
-                                    registrations: 'guests/devise/registrations', password: 'guest/password'}
+                                   registrations: 'hosts/devise/registrations'}
   devise_for :admins, controllers: {sessions: 'admins/devise/sessions', password: 'admins/passwrd'}
 
   root to: 'homes#top'
@@ -14,9 +11,9 @@ Rails.application.routes.draw do
     patch 'hosts/withdraw' => 'hosts#withdraw'
     resources :hosts, only:[:show, :edit, :update]
     resources :events
-    resources :guests, only:[:show]
+    resources :guests, only:[:index, :show]
     resources :genres, except:[:new, :show]
-    resources :event_posts, only:[:index]
+    resources :event_posts, only:[:index, :show]
   end
 
   namespace :admins do
@@ -42,5 +39,9 @@ Rails.application.routes.draw do
     end
     resources :event_posts, only:[:index]
   end
-  
+
+
+  devise_for :guests, controllers: {sessions: 'guests/devise/sessions', password: 'guests/password',
+                                    registrations: 'guests/devise/registrations'}
+
 end

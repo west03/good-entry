@@ -1,28 +1,30 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <%= link_to root_path do %>
-    <%= image_tag 'スクリーンショット.png', size: '230x80' %>
-  <% end %>
-  <% if current_host.present? %>
-    <p>こんにちは、<%= current_host.name %>さん！</p>
-  <% else %>
-  <% end %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-       <li class="nav-item">
-        <%= link_to "マイページ", my_page_path %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "イベント一覧", events_path %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "参加イベント一覧", event_posts_path %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "ログアウト", destroy_guest_session_path, method: :delete %>
-      </li>
-    </ul>
+  <div class="container">
+    <%= link_to root_path do %>
+      <%= image_tag 'スクリーンショット.png', size: '230x80' %>
+    <% end %>
+    <% if current_host.present? %>
+      <p>こんにちは、<%= current_host.name %>さん！</p>
+    <% else %>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+         <li class="nav-item">
+          <%= link_to "マイページ", my_page_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "イベント一覧", events_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "参加イベント一覧", event_posts_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログアウト", destroy_guest_session_path, method: :delete %>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

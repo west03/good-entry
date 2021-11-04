@@ -8,7 +8,7 @@
       <tr>
         <th>タイトル</th>
         <th>ステータス</th>
-        <th></th>
+        <th colspan="3"></th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +17,7 @@
         <td><%= events.title %></td>
         <td><%= events.holding_flag %></td>
         <td><%= link_to "詳細へ", hosts_event_path(events.id) %></td>
+        <td><%= link_to "削除", hosts_event_path(events.id), method: :delete, class: "class:'btn-sm btn-danger" %></td>
       </tr>
       <% end %>
     </tbody>

@@ -3,7 +3,6 @@ class Event < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
-  has_many :tags, dependent: :destroy
   belongs_to :host
   belongs_to :genre
   attachment :image
@@ -19,7 +18,7 @@ class Event < ApplicationRecord
     福岡県: 40, 佐賀県: 41, 長崎県: 42, 熊本県: 43, 大分県: 44, 宮崎県: 45, 鹿児島県: 46, 沖縄県: 47
   }
 
-  enum holading_flag: {
+  enum holding_flag: {
     作成中: 0, 募集中: 1, 募集終了: 2, 延期: 3, 中止: 4
   }
 end

@@ -1,5 +1,5 @@
 class Hosts::HostsController < ApplicationController
-  before_action :correct_host, only: %i[show edit update]
+   before_action :correct_host, only:[:show, :edit, :update]
   def show
     @host = current_host
   end
@@ -17,7 +17,8 @@ class Hosts::HostsController < ApplicationController
     end
   end
 
-  def unsubscribe; end
+  def unsubscribe
+  end
 
   def withdraw
     @host = Host.find(current_host.id)
@@ -34,6 +35,8 @@ class Hosts::HostsController < ApplicationController
 
   def correct_host
     @host = Host.find(params[:id])
-    redirect_to hosts_host_path(current_host.id) unless @host == current_host
+    unless @host == current_host
+      redirect_to hosts_host_path(current_host.id)
+    end
   end
 end

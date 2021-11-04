@@ -11,8 +11,7 @@
 
   <body>
     <header>
-      <div class="container">
-        <% if admin_signed_in? %>
+      <% if admin_signed_in? %>
           <%= render 'layouts/header_admin' %>
         <% elsif host_signed_in? %>
           <%= render 'layouts/header_host' %>
@@ -21,7 +20,6 @@
         <% else %>
           <%= render 'layouts/header' %>
         <% end %>
-      </div>
     </header>
     <%= yield %>
   </body>
