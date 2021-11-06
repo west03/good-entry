@@ -1,0 +1,50 @@
+<div class="container">
+  <h2>イベント詳細</h2>
+  <div class="row my-3">
+    <div class="col-md-3">タイトル</div>
+    <div class="col-md-9"><%= @event.title %></div>
+  </div>
+   <div class="row my-3">
+    <div class="col-md-3">主催者</div>
+    <div class="col-md-9"><%= @event.host.name %></div>
+  </div>
+  <div class="row my-3">
+    <div class="col-2"></div>
+    <div class="col-10">
+      <%= attachment_image_tag @event, :image, :fill, 300, 300, format: 'jpeg',fallback: "no_image.png", size: '300x300' %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-3">内容詳細</div>
+    <div class="col-md-9"><%= @event.introduction %></div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-3">種類</div>
+    <div class="col-md-9"><%= @event.genre.name %></div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-3">開催日時</div>
+    <div class="col-md-9"><%= @event.date_and_time %></div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-3">開催場所</div>
+    <div class="col-md-9">
+      <%= @event.prefecture %><br>
+      <%= @event.address %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">ステータス</div>
+    <div class="col-md-9"><%= @event.holding_flag %></div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-3"></div>
+    <div class="col-md-4">
+      <%= form_with model: @event_entry, url: event_entries_path, method: :post, local: true do |f| %>
+      <%= f.hidden_field :guest_id, value:current_guest.id %>
+      <%= f.submit "イベントに参加する",class: "btn-sm btn-success" %>
+      <% end %>
+    </div>
+    <div class="col-5"></div>
+  </div>
+</div>

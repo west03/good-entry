@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>参加イベント一覧</h2>
+    <table class="table">
+      <thade>
+        <tr>
+          <th>タイトル</th>
+        </tr>
+      </thade>
+      <tbody>
+      <% @event_entries.each do |event| %>
+        <tr>
+          <td><%= event.event.title %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+</div>

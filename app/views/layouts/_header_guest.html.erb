@@ -3,8 +3,8 @@
     <%= link_to root_path do %>
       <%= image_tag 'スクリーンショット.png', size: '230x80' %>
     <% end %>
-    <% if current_host.present? %>
-      <p>こんにちは、<%= current_host.name %>さん！</p>
+    <% if current_guest.present? %>
+      <p>こんにちは、<%= current_guest.last_name %><%= current_guest.first_name %>さん！</p>
     <% else %>
     <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

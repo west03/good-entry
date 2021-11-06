@@ -22,7 +22,7 @@ class Hosts::HostsController < ApplicationController
 
   def withdraw
     @host = Host.find(current_host.id)
-    @host.updete(is_active: false)
+    @host.update(is_active: false)
     reset_session
     redirect_to root_path
   end

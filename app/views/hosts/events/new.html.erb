@@ -7,7 +7,7 @@
     <% end %>
   <% end %>
   <%= form_with model: @event, url: hosts_events_path, local: true do |f| %>
-  <%= f.hidden_field:host_id, value: current_host.id %>
+  <%= f.hidden_field :host_id, value:current_host.id %>
     <div>
       <div class="field row my-3">
         <div class="col-4"><%= f.label :タイトル %></div>

@@ -50,7 +50,7 @@ class Hosts::EventsController < ApplicationController
   end
 
   def correct_host
-    @host = Host.find(params[:id])
+    @host = Host.find(current_host.id)
     unless @host == current_host
       redirect_to hosts_events_path
     end
