@@ -18,7 +18,9 @@ class Guests::GuestsController < ApplicationController
     end
   end
 
-  def unsubscribe; end
+  def unsubscribe
+    @guest = Guest.find(current_guest.id)
+  end
 
   def withdraw
     @guest = Guest.find(current_guest.id)
@@ -30,7 +32,7 @@ class Guests::GuestsController < ApplicationController
   private
 
   def guest_params
-    params.require(:guest).permit(:last_name, :first_name, :last_name_kana,  :first_name_kane,:postal_code, :address, :telephone_number, :email)
+    params.require(:guest).permit(:last_name, :first_name, :last_name_kana,  :first_name_kana,:postal_code, :address, :telephone_number, :email)
   end
 
   def correct_guest

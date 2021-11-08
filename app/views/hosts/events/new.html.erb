@@ -2,8 +2,8 @@
   <h2>イベント新規登録</h2>
   <% if @event.errors.any? %>
     <%= @event.errors.count %>件のエラーが発生しました
-    <%= @event.errors.full_messages.each do |message| %>
-      <%= message %><br>
+    <% @event.errors.full_messages.each do |message| %><br>
+      <%= message %>
     <% end %>
   <% end %>
   <%= form_with model: @event, url: hosts_events_path, local: true do |f| %>

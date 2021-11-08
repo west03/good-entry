@@ -11,18 +11,19 @@ Rails.application.routes.draw do
     patch 'hosts/withdraw' => 'hosts#withdraw'
     resources :hosts, only:[:show, :edit, :update]
     resources :events
-    resources :guests, only:[:index, :show]
+    resources :guests, only:[:show]
     resources :genres, except:[:new, :show]
     resources :event_posts, only:[:index, :show]
   end
 
   namespace :admins do
-    root to: 'homes#top'
+    root to: 'events#index'
     resources :guests, except:[:new, :careate, :destroy]
     resources :hosts, except:[:new, :careate, :destroy]
-    resources :events, except:[:new, :careate, :destroy]
-    resources :event_posts, only:[:index]
-    resources :event_guests, only:[:index]
+    resources :events, except:[:new, :careate]
+    resources :event_posts, only:[:show]
+    resources :event_guests, only:[:show]
+    resources :event_entries, only:[:show]
   end
 
  scope module: :guests do
@@ -31,13 +32,15 @@ Rails.application.routes.draw do
     get 'guests/unsubscribe' => 'guests#unsubscribe'
     patch 'guests/withdraw' => 'guests#withdraw'
     resources :hosts, only:[:index, :show]
-    resources :events, only:[:index, :show]
-    resources :event_entries, only:[:index, :update, :destroy, :create] do
+    resources :events, only:[:index, :show] do
+      resources :likes, only:[:create, :destroy]
+    end
+    resources :event_entries, only:[:index, :destroy, :create] do
       collection do
         delete 'destroy_all'
       end
     end
-    resources :event_posts, only:[:index]
+    resources :event_posts, only:[:show]
   end
 
 

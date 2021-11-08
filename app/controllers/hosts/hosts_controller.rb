@@ -18,6 +18,7 @@ class Hosts::HostsController < ApplicationController
   end
 
   def unsubscribe
+    @host = Host.find(current_host.id)
   end
 
   def withdraw

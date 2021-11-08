@@ -1,3 +1,21 @@
-<% @event.event_entries.each do |guest| %>
-  <%= guest.first_name %>
-<% end %>
+<div class="container">
+  <h2>イベント参加者一覧</h2>
+  <table class="table">
+    <thad>
+      <tr>
+        <th>名前</th>
+        <th>カナ</th>
+        <th></th>
+      </tr>
+    </thad>
+    <tbody>
+       <% @event.event_entries.each do |guest| %>
+      <tr>
+        <td><%= guest.guest.last_name %><%= guest.guest.first_name %></td>
+        <td><%= guest.guest.last_name_kana %><%= guest.guest.first_name_kana %></td>
+        <td><%= link_to "詳細へ", hosts_guest_path(guest.guest.id) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

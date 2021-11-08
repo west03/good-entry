@@ -1,0 +1,36 @@
+ja:
+  activerecord:
+    models:
+      guest: guest
+      host: host
+      event: イベント
+      genre: ジャンル
+    attributes:
+      guest:
+        last_name: 姓
+        first_name: 名
+        last_name_kana: セイ
+        first_name_kana: メイ
+        postal_code: 郵便番号
+        address: 住所
+        telephone_number: 電話番号
+        email: メールアドレス
+        is_active: ステータス
+      host:
+        name: 名前
+        postal_code: 郵便番号
+        address: 住所
+        telephone_number: 電話番号
+        email: メールアドレス
+        is_active: ステータス
+      event:
+        title: タイトル
+        introduction: 説明
+        image_id: 画像
+        prefecture: 都道府県
+        address: 開催場所
+        date_and_time: 開催日時
+        holding_flag: 開催ステータス
+        genre: 種類
+      genre:
+        name: 名前

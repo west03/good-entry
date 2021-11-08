@@ -1,0 +1,24 @@
+<div class="container">
+  <h2><%= @event.title %>の参加者一覧</h2>
+  <table class="table my-3">
+    <thad>
+      <tr>
+        <th>名前</th>
+        <th>カナ</th>
+        <th></th>
+      </tr>
+    </thad>
+    <tbody>
+       <% @guests.each do |guest| %>
+      <tr>
+        <td><%= guest.guest.last_name %><%= guest.guest.first_name %></td>
+        <td><%= guest.guest.last_name_kana %><%= guest.guest.first_name_kana %></td>
+        <td><%= link_to "詳細へ", admins_guest_path(guest.guest.id) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="my-3">
+    <p><%= paginate @guests %></p>
+  </div>
+</div>

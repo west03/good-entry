@@ -1,0 +1,56 @@
+<div class="container">
+  <h2><%= @guest.last_name %> <%= @guest.first_name %>さんの情報編集</h2>
+    <% if @guest.errors.any? %>
+      <%= @guest.errors.count %>件のエラーが発生しました<br>
+      <% @guest.errors.full_messages.each do |message| %>
+        <%= message %><br>
+      <% end %>
+    <% end %>
+  <div class="row">
+    <p class="col-md-3 my-3">guestID</p>
+    <p class="col-md-3 my-3"><%= @guest.id %></p>
+    <div class="col-6"></div>
+  </div>
+  <div>
+    <%= form_with model: @guest, url: admins_guest_path(@guest.id), local: true do |f| %>
+      <div class="field row my-3">
+        <div class="col-md-3"><%= f.label :氏名 %></div>
+        <div class="col-md-3 mr-3">(姓)<%= f.text_field :last_name %></div>
+        <div class="col-md-3 ml-3">(名)<%= f.text_field :first_name %></div>
+        <div class="col-md-3"></div>
+      </div>
+      <div class="field row my-3">
+        <div class="col-md-3"><%= f.label :フリガナ %></div>
+        <div class="col-md-3 mr-3">(セイ)<%= f.text_field :last_name_kana %></div>
+        <div class="col-md-3 ml-3">(メイ)<%= f.text_field :first_name_kana %></div>
+        <div class="col-md-3"></div>
+      </div>
+      <div class="field row my-3">
+        <div class="col-md-3"><%= f.label :郵便番号 %></div>
+        <div class="col-md-9"><%= f.text_field :postal_code %></div>
+      </div>
+      <div class="field row my-3">
+        <div class="col-md-3"><%= f.label :住所 %></div>
+        <div class="col-md-9"><%= f.text_field :address %></div>
+      </div>
+      <div class="field row my-3">
+        <div class="col-md-3"><%= f.label :電話番号 %></div>
+        <div class="col-md-9"><%= f.text_field :telephone_number %></div>
+      </div>
+      <div class="field row my-3">
+        <div class="col-md-3"><%= f.label :メールアドレス %></div>
+        <div class="col-md-9"><%= f.text_field :email %></div>
+      </div>
+      <div class="field row my-3">
+        <div class="col-md-3"><%= f.label :ステータス %></div>
+        <div class="col-md-3"><%= f.radio_button :is_active, :true %>有効</div>
+        <div class="col-md-3"><%= f.radio_button :is_active, :false %>無効</div>
+      　<div class="col-md-3"></div>
+      </div>
+      <div class="action row">
+        <div class="col-3"></div>
+        <div class="co-md-9"><%= f.submit "変更を保存する", class: "btn-sm btn-success" %></div>
+      </div>
+    <% end%>
+  </div>
+</div>

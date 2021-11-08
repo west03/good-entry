@@ -1,30 +1,30 @@
 class Guests::EventEntriesController < ApplicationController
   def index
-    @event_entries = EventEntry.all
+    @event_entries = current_guest.event_entries
   end
 
   def create
-    @event_entry = current_guest.event_entries.new(event_entry_params)
-    #if current_guest.event_entries.find_by(event_id: params[:event_entries][:event_id])
-    if
-    @event_entry = current_guest.event_entries.new(event_entry_params)
+    @event_entry = EventEntry.find_or_initialize_by(guest_id: current_guest.id, event_id: params[:event_entry][:event_id])
     @event_entry.save
     redirect_to event_entries_path
-    else
-      render :events/show
-    end
   end
 
-  def update; end
+  def destroy
+    @event_entry = current_guest.event_entries.find(params[:id])
+    @event_entry.destroy
+    redirect_to event_entries_path
+  end
 
-  def destroy; end
-
-  def destroy_all; end
+  def destroy_all
+    @event_entries = current_guest.event_entries.all
+    @event_entries.destroy_all
+     redirect_to event_entries_path
+  end
 
   private
 
   def event_entry_params
-    params.require(:event_entry).permit(:guest_id)
+    params.require(:event_entry).permit(:guest_id, :event_id)
   end
 
 end

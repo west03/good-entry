@@ -5,6 +5,14 @@ class Event < ApplicationRecord
   has_many :tag_maps, dependent: :destroy
   belongs_to :host
   belongs_to :genre
+
+  validates :title, presence: true
+  validates :introduction, presence: true
+  #validates :image_id, presence: true
+  validates :prefecture, presence: true
+  validates :address, presence: true
+  validates :date_and_time, presence: true
+  validates :holding_flag, presence: true
   attachment :image
 
   enum prefecture: {

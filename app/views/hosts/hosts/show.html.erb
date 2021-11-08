@@ -5,12 +5,12 @@
     <p class="col-md-3"><%= link_to "編集する",  edit_hosts_host_path(@host.id) %></p>
     <dvi class="col-md-6"></dvi>
   </div>
-  <table border="1">
+  <table class="table">
     <tr><th class="col-md-3">名前</th><td class="col=9"><%= @host.name %></td><tr>
     <tr><th class="col-md-3">郵便番号</th><td class="col=9"><%= @host.postal_code %></td><tr>
     <tr><th class="col-md-3">住所</th><td class="col=9"><%= @host.address %></td><tr>
     <tr><th class="col-md-3">電話番号</th><td class="col=9"><%= @host.telephone_number %></td><tr>
-    <tr><th class="col-md-3">メールアドレス</th><td class="col=9"><%= @host.email %></td><tr>
+    <tr><th class="col-md-3"  border-bottom="1">メールアドレス</th><td class="col=9"><%= @host.email %></td><tr>
   </table>
   <div class="row my-3">
     <p class="col-md-3">投稿イベント</p>

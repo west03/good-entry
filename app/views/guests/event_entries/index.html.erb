@@ -1,15 +1,26 @@
 <div class="container">
-  <h2>参加イベント一覧</h2>
-    <table class="table">
+  <div class="row">
+    <h2 class="col-md-6 my-3">参加イベント一覧</h2>
+    <div class="col-md-6 my-3">
+      <p class="text-right"><%= link_to "全部削除", destroy_all_event_entries_path, method: :delete, class:'btn btn-danger btn-sm' %></p>
+    </div>
+  </div>
+    <table class="table my-3">
       <thade>
         <tr>
           <th>タイトル</th>
+          <th>主催者</th>
+          <th>開催日時</th>
+          <th></th>
         </tr>
       </thade>
       <tbody>
       <% @event_entries.each do |event| %>
         <tr>
-          <td><%= event.event.title %></td>
+          <td><%= link_to event.event.title, event_path(event.event.id) %></td>
+          <td><%= link_to event.event.host.name, host_path(event.event.host.id) %></td>
+          <td><%= event.event.date_and_time %></td>
+          <td><%= link_to "削除する", event_entry_path(event.id), method: :delete %></td>
         </tr>
       <% end %>
       </tbody>

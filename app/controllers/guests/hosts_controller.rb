@@ -1,5 +1,9 @@
 class Guests::HostsController < ApplicationController
-  def index; end
+  def index
+    @hosts = Host.all
+  end
 
-  def show; end
+  def show
+    @host = Host.find(params[:id])
+  end
 end

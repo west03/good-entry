@@ -6,7 +6,7 @@
   </div>
    <div class="row my-3">
     <div class="col-md-3">主催者</div>
-    <div class="col-md-9"><%= @event.host.name %></div>
+    <div class="col-md-9"><%= link_to @event.host.name, host_path(@event.host.id) %></div>
   </div>
   <div class="row my-3">
     <div class="col-2"></div>
@@ -42,9 +42,22 @@
     <div class="col-md-4">
       <%= form_with model: @event_entry, url: event_entries_path, method: :post, local: true do |f| %>
       <%= f.hidden_field :guest_id, value:current_guest.id %>
-      <%= f.submit "イベントに参加する",class: "btn-sm btn-success" %>
+      <%= f.hidden_field :event_id, value: @event.id %>
+        <% if current_guest.event_entries.pluck(:event_id).exclude?(@event.id) %>
+          <%= f.submit "イベントに参加する",class: "btn-sm btn-success" %>
+        <% end %>
       <% end %>
     </div>
     <div class="col-5"></div>
+  </div>
+  <div class="row my-3">
+    <div class="col-3">いいね件数: <%= @event.likes.count %></div>
+    <div class="col-md-9">
+      <% if current_guest.already_liked?(@event) %>
+        <%= button_to 'いいねを取り消す', event_like_path(@event), method: :delete %>
+      <% else %>
+        <%= button_to 'いいね', event_likes_path(@event) %>
+      <% end %>
+    </div>
   </div>
 </div>

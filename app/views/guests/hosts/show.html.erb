@@ -1,0 +1,14 @@
+<div class="container">
+  <h2 class="my-3"><%= @host.name %>の詳細</h2>
+   <div class="row">
+     <table class="table my-3">
+      <tr><th class="col-3">名前</th><td class="col-md-9"><%= @host.name %></td><tr>
+      <tr><th class="col-3">郵便番号</th><td class="col-md-9"><%= @host.postal_code %></td><tr>
+      <tr><th class="col-3">住所</th><td class="col-md-9"><%= @host.address %></td><tr>
+      <tr><th class="col-3 border-bottom">電話番号</th><td class="col-md-9 border-bottom"><%= @host.telephone_number %></td><tr>
+    </table>
+  </div>
+  <div class="row">
+    <%= link_to "投稿イベント一覧", event_post_path(@host.id) %>
+  </div>
+</div>

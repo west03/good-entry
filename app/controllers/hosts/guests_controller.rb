@@ -1,3 +1,5 @@
 class Hosts::GuestsController < ApplicationController
-  def show; end
+  def show
+    @guest = Guest.find(params[:id])
+  end
 end

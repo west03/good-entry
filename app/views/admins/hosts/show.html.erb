@@ -1,0 +1,43 @@
+<div class="container">
+  <h2><%= @host.name %>の詳細</h2>
+   <div class="row my-2">
+    <p class="col-md-3">hostID</p>
+    <p class="col-md-9"><%= @host.id %></p>
+  </div>
+   <div class="row my-2">
+    <p class="col-md-3">名前</p>
+    <p class="col-md-9"><%= @host.name %></p>
+  </div>
+   <div class="row my-2">
+    <p class="col-md-3">郵便番号</p>
+    <p class="col-md-9"><%= @host.postal_code %></p>
+  </div>
+   <div class="row my-2">
+    <p class="col-md-3">住所</p>
+    <p class="col-md-9"><%= @host.address %></p>
+  </div>
+   <div class="row my-2">
+    <p class="col-md-3">電話番号</p>
+    <p class="col-md-9"><%= @host.telephone_number %></p>
+  </div>
+   <div class="row my-2">
+    <p class="col-md-3">メールアドレス</p>
+    <p class="col-md-9"><%= @host.email %></p>
+  </div>
+   <div class="row my-2">
+    <p class="col-md-3">ステータス</p>
+    <div class="col-md-9">
+      <% if @host.is_active == true %>
+        <p class="text-success">有効</p>
+      <% else %>
+        <p class="text-secondary">退会</p>
+      <% end %>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-3"></div>
+    <div class="col-md-3"><%= link_to "編集する", edit_admins_host_path(@host.id) %></div>
+    <div class="col-md-3"><%= link_to "投稿イベントを見る", admins_event_post_path(@host.id) %></div>
+    <div class="col-3"></div>
+  </div>
+</div>

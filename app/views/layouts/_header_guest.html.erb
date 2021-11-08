@@ -18,8 +18,11 @@
         <li class="nav-item">
           <%= link_to "イベント一覧", events_path %>
         </li>
+         <li class="nav-item">
+          <%= link_to "host一覧", hosts_path %>
+        </li>
         <li class="nav-item">
-          <%= link_to "参加イベント一覧", event_posts_path %>
+          <%= link_to "参加イベント一覧", event_entries_path %>
         </li>
         <li class="nav-item">
           <%= link_to "ログアウト", destroy_guest_session_path, method: :delete %>
