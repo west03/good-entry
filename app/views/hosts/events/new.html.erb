@@ -7,7 +7,6 @@
     <% end %>
   <% end %>
   <%= form_with model: @event, url: hosts_events_path, local: true do |f| %>
-  <%= f.hidden_field :host_id, value:current_host.id %>
     <div>
       <div class="field row my-3">
         <div class="col-4"><%= f.label :タイトル %></div>
@@ -34,6 +33,10 @@
         <div class="col-8"><%= f.select :prefecture, Event.prefectures.keys, {prompt: "選択してください"}, class: "prefecture-select" %></div>
         <div class="col-4"></div>
         <div class="col-8"><%= f.text_field :address %></div>
+      </div>
+      <div class="field row my-3">
+        <div class="col-4"><%= f.label :タグ %></div>
+        <div class="col-8"><%= f.text_field :tag_name, value: @tag_list %></div>
       </div>
       <div class="actions row my-3">
         <div class="col-4"></div>

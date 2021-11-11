@@ -21,6 +21,12 @@ class Admins::GuestsController < ApplicationController
     end
   end
 
+  def search
+    @guests = Guest.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(10)
+    @keyword = params[:keyword]
+    render :index
+  end
+
   private
 
   def guest_params

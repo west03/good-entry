@@ -9,4 +9,11 @@ class Guests::EventsController < ApplicationController
     @event_entry = EventEntry.new
     @like = Like.new
   end
+
+  def search
+    @events = Event.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(5)
+    @keyword = params[:keyword]
+    render :index
+  end
+
 end

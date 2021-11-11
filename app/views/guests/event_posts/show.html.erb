@@ -2,7 +2,7 @@
   <div>
     <h2 class="my-3"><%= @host.name %>のイベント一覧</h2>
   </div>
-  <% @host.events.each do |event| %>
+  <% @hosts.each do |event| %>
   <div class="row my-5">
     <div class="col-md-5 my-3">
       <%= link_to event_path(event.id) do %>
@@ -20,6 +20,6 @@
   </div>
   <% end %>
   <div>
-    <%#= paginate @host.events %>
+    <%= paginate @hosts %>
   </div>
 </div>

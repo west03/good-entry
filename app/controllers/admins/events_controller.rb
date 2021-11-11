@@ -23,6 +23,12 @@ class Admins::EventsController < ApplicationController
     end
   end
 
+  def search
+    @events = Event.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(10)
+    @keyword = params[:keyword]
+    render :index
+  end
+
   private
 
   def event_params

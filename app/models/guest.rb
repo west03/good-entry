@@ -18,4 +18,9 @@ class Guest < ApplicationRecord
   def already_liked?(event)
     self.likes.exists?(event_id: event.id)
   end
+
+  def self.search(keyword)
+    where(["last_name like? OR first_name like? ", "%#{keyword}%",  "%#{keyword}%"])
+  end
+
 end

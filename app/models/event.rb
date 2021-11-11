@@ -3,12 +3,12 @@ class Event < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
+  has_many :tags, through: :tag_maps
   belongs_to :host
   belongs_to :genre
 
   validates :title, presence: true
   validates :introduction, presence: true
-  #validates :image_id, presence: true
   validates :prefecture, presence: true
   validates :address, presence: true
   validates :date_and_time, presence: true
@@ -29,4 +29,24 @@ class Event < ApplicationRecord
   enum holding_flag: {
     作成中: 0, 募集中: 1, 募集終了: 2, 延期: 3, 中止: 4
   }
+
+  def self.search(keyword)
+    where(["title like? OR introduction like?", "%#{keyword}%", "%#{keyword}%"])
+  end
+
+  def save_event_tag(tags)
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    old_tags = current_tags - tags
+    new_tags = tags - current_tags
+
+    old_tags.each do |old|
+      self.event_tags.delete EventTag.find_by(name: old)
+    end
+
+    new_tags.each do |new|
+      event_tag = Tag.find_or_create_by(name: new)
+      self.tags << event_tag
+    end
+  end
+
 end

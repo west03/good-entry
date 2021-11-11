@@ -10,8 +10,12 @@ class Hosts::EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = current_host.events.new(event_params)
     @genres = current_host.genres
+    if params[:event][:tag_name].present?
+      tag_list = params[:event][:tag_name].split(',')
+      @event.save_event_tag(tag_list)
+    end
     if @event.save
       redirect_to hosts_event_posts_path
     else
@@ -21,16 +25,22 @@ class Hosts::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @event_tags = @event.tags
   end
 
   def edit
     @event = Event.find(params[:id])
     @genres = current_host.genres
+    @tag_list = @event.tags.pluck(:name).join(",")
   end
 
   def update
     @event = Event.find(params[:id])
     @genres = current_host.genres
+    if params[:event][:name].present?
+    tag_list = params[:event][:name].split(',')
+    @event.save_event_tag(tag_list)
+    end
     if @event.update(event_params)
       redirect_to hosts_event_path(@event.id)
     else
@@ -41,6 +51,12 @@ class Hosts::EventsController < ApplicationController
   def destroy
     Event.destroy(params[:id])
     redirect_to hosts_event_posts_path
+  end
+
+  def search
+    @events = Event.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(10)
+    @keyword = params[:keyword]
+    render :index
   end
 
   private

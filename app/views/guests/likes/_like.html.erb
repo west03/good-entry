@@ -1,0 +1,9 @@
+ <% if current_guest.already_liked?(event) %>
+    <%= link_to event_like_path(event, current_guest.likes), method: :delete, remote: true do %>
+      ♥いいね
+    <% end %>
+  <% else %>
+    <%= link_to event_likes_path(event), method: :post, remote: true do  %>
+      ♡いいね
+    <% end %>
+  <% end %>

@@ -21,6 +21,12 @@ class Admins::HostsController < ApplicationController
     end
   end
 
+  def search
+    @hosts = Host.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(10)
+    @keyword = params[:keyword]
+    render :index
+  end
+
   private
 
   def host_params

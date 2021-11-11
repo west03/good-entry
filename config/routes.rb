@@ -4,16 +4,20 @@ Rails.application.routes.draw do
   devise_for :admins, controllers: {sessions: 'admins/devise/sessions', password: 'admins/passwrd'}
 
   root to: 'homes#top'
+
   get 'about' => 'homes#about'
 
   namespace :hosts do
     get 'hosts/unsubscribe' => 'hosts#unsubscribe', as: 'hosts_unsubscribe'
     patch 'hosts/withdraw' => 'hosts#withdraw'
-    resources :hosts, only:[:show, :edit, :update]
+    resources :hosts, only:[:index,:show, :edit, :update]
     resources :events
     resources :guests, only:[:show]
     resources :genres, except:[:new, :show]
     resources :event_posts, only:[:index, :show]
+    get 'host_search' => 'hosts#search'
+    get 'event_search' => 'events#search'
+    get 'event_post_search' => 'event_posts#search'
   end
 
   namespace :admins do
@@ -24,6 +28,9 @@ Rails.application.routes.draw do
     resources :event_posts, only:[:show]
     resources :event_guests, only:[:show]
     resources :event_entries, only:[:show]
+    get 'event_search' => 'events#search'
+    get 'host_search' => 'hosts#search'
+    get 'guest_search' => 'guests#search'
   end
 
  scope module: :guests do
@@ -41,6 +48,9 @@ Rails.application.routes.draw do
       end
     end
     resources :event_posts, only:[:show]
+    get 'event_search' => 'events#search'
+    get 'host_search' => 'hosts#search'
+    get 'entry_search' => 'event_entries#search'
   end
 
 
