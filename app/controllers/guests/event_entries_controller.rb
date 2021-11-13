@@ -1,6 +1,6 @@
 class Guests::EventEntriesController < ApplicationController
   def index
-    @event_entries = current_guest.event_entries.page(params[:page]).per(1)
+    @event_entries = current_guest.event_entries.page(params[:page]).per(10)
   end
 
   def create
@@ -22,18 +22,13 @@ class Guests::EventEntriesController < ApplicationController
   end
 
   def search
-    # binding.irb
-    # @event_entries = current_guest.event_entries.events.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(10)
-
     event_entries = []
     current_guest.event_entries.each do |ee|
       if ee.event.title.match(/#{params[:keyword]}/)
         event_entries << ee
       end
     end
-
-    @event_entries = Kaminari.paginate_array(event_entries).page(params[:page]).per(1)
-
+    @event_entries = Kaminari.paginate_array(event_entries).page(params[:page]).per(10)
     @keyword = params[:keyword]
     render :index
   end

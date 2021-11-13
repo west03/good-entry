@@ -2,8 +2,8 @@
   <h2>イベント新規登録</h2>
   <% if @event.errors.any? %>
     <%= @event.errors.count %>件のエラーが発生しました
-    <% @event.errors.full_messages.each do |message| %><br>
-      <%= message %>
+    <% @event.errors.full_messages.each do |message| %>
+      <%= message %><br>
     <% end %>
   <% end %>
   <%= form_with model: @event, url: hosts_events_path, local: true do |f| %>
@@ -34,13 +34,13 @@
         <div class="col-4"></div>
         <div class="col-8"><%= f.text_field :address %></div>
       </div>
-      <div class="field row my-3">
+       <div class="field row my-3">
         <div class="col-4"><%= f.label :タグ %></div>
-        <div class="col-8"><%= f.text_field :tag_name, value: @tag_list %></div>
+        <div class="col-8"><%= f.text_field :name,  placeholder: "例 清掃,地域活動,参加" %></div>
       </div>
       <div class="actions row my-3">
         <div class="col-4"></div>
-        <div class="col-4"><%= f.submit "新規登録", class: "btn-sm btn-success" %></div>
+        <div class="col-4"><%= f.submit "新規作成", class: "btn-sm btn-primary" %></div>
         <div class="col-4"></div>
       </div>
     </div>

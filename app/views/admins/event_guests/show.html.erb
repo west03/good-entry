@@ -1,5 +1,12 @@
 <div class="container">
   <h2 class="my-3"><%= @guest.last_name %><%= @guest.first_name %>さんの参加イベント一覧</h2>
+  <div class="search-form text-right">
+    <%= form_with url: admins_event_guest_event_guest_search_path(@guest.id), method: :get, local: true do |f| %>
+       <%= f.label :" イベント検索:" %>
+      <%= f.text_field :keyword, value: @keyword %>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
   <table class="table my-3">
     <thaed>
       <tr>

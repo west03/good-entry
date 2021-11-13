@@ -3,31 +3,14 @@
   <div class="row my-3">
     <div class="bd-highlight col-md-6 text-lift"><%= button_to "+",   new_hosts_event_path, method: :get  %></div>
     <div class="search-form  col-md-6 text-right">
-      <%= form_with url: hosts_event_post_search_path, method: :get, local: true do |f| %>
+      <%= form_with url:  hosts_event_post_event_post_search_path(:event_post_id), method: :get, local: true do |f| %>
         <%= f.label :" イベント検索:" %>
-        <%= f.text_field :keyword, value: @keyword %>
+        <%= f.text_field :keyword, value: @keyword,  placeholder: "#でタグ検索" %>
         <%= f.submit "検索" %>
       <% end %>
     </div>
   </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>タイトル</th>
-        <th>ステータス</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @events.each do |events| %>
-      <tr>
-        <td><%= events.title %></td>
-        <td><%= events.holding_flag %></td>
-        <td><%= link_to "詳細へ", hosts_event_path(events.id) %></td>
-        <td><%= link_to "削除", hosts_event_path(events.id), method: :delete, class: "class:'btn-sm btn-danger" %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= paginate @events %>
+  <div>
+    <%= render 'event/index', events: @events %>
+  </div>
 </div>

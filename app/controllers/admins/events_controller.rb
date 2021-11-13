@@ -6,16 +6,22 @@ class Admins::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @comments = @event.comments.page(params[:page]).per(7).reverse_order
   end
 
   def edit
     @event = Event.find(params[:id])
     @genres = @event.host.genres
+    @tag_list = @event.tags.pluck(:name).join(",")
   end
 
   def update
     @event = Event.find(params[:id])
     @genres = @event.host.genres
+    if params[:event][:name].present?
+    tag_list = params[:event][:name].split(',')
+    @event.save_event_tag(tag_list)
+    end
     if @event.update(event_params)
       redirect_to admins_event_path(@event.id)
     else
@@ -24,8 +30,12 @@ class Admins::EventsController < ApplicationController
   end
 
   def search
-    @events = Event.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(10)
-    @keyword = params[:keyword]
+    if (params[:keyword])[0] == '#'
+      @events = Tag.search(params[:keyword]).order('created_at desc').page(params[:page]).per(10)
+    else
+      @events = Event.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(10)
+      @keyword = params[:keyword]
+    end
     render :index
   end
 

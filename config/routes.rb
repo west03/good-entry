@@ -14,10 +14,11 @@ Rails.application.routes.draw do
     resources :events
     resources :guests, only:[:show]
     resources :genres, except:[:new, :show]
-    resources :event_posts, only:[:index, :show]
+    resources :event_posts, only:[:index, :show] do
+      get 'event_post_search' => 'event_posts#search'
+    end
     get 'host_search' => 'hosts#search'
     get 'event_search' => 'events#search'
-    get 'event_post_search' => 'event_posts#search'
   end
 
   namespace :admins do
@@ -25,9 +26,15 @@ Rails.application.routes.draw do
     resources :guests, except:[:new, :careate, :destroy]
     resources :hosts, except:[:new, :careate, :destroy]
     resources :events, except:[:new, :careate]
-    resources :event_posts, only:[:show]
-    resources :event_guests, only:[:show]
-    resources :event_entries, only:[:show]
+    resources :event_posts, only:[:show] do
+      get 'event_post_search' => 'event_posts#search'
+    end
+    resources :event_guests, only:[:show] do
+       get 'event_guest_search' => 'event_guests#search'
+    end
+    resources :event_entries, only:[:show] do
+      get 'event_entry_search' => 'event_entries#search'
+    end
     get 'event_search' => 'events#search'
     get 'host_search' => 'hosts#search'
     get 'guest_search' => 'guests#search'
@@ -41,6 +48,7 @@ Rails.application.routes.draw do
     resources :hosts, only:[:index, :show]
     resources :events, only:[:index, :show] do
       resources :likes, only:[:create, :destroy]
+      resources :comments, only:[:create, :destroy]
     end
     resources :event_entries, only:[:index, :destroy, :create] do
       collection do

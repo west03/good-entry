@@ -4,37 +4,12 @@
     <div class="search-form  col-md-6 text-right">
       <%= form_with url: admins_event_search_path, method: :get, local: true do |f| %>
         <%= f.label :" イベント検索:" %>
-        <%= f.text_field :keyword, value: @keyword %>
+        <%= f.text_field :keyword, value: @keyword, placeholder: "#でタグ検索" %>
         <%= f.submit "検索" %>
       <% end %>
     </div>
   </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>タイトル</th>
-        <th>ステータス</th>
-        <th>場所</th>
-        <th>日時</th>
-        <th>参加人数</th>
-        <th>いいね</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @events.each do |events| %>
-      <tr>
-        <td><%= link_to events.title, admins_event_path(events.id) %></td>
-        <td><%= events.holding_flag %></td>
-        <th><%= events.prefecture %></th>
-        <th><%= events.date_and_time %></th>
-        <td><%= events.event_entries.count %></td>
-        <td><%= events.likes.count %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <div class="text-center my-3">
-    <%= paginate @events %>
+  <div>
+     <%= render 'event/index', events: @events %>
   </div>
-</div>
 </div>

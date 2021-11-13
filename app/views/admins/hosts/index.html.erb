@@ -3,7 +3,7 @@
     <h2 class="col-md-6">host一覧</h2>
     <div class="search-form  col-md-6 text-right">
       <%= form_with url: admins_host_search_path, method: :get, local: true do |f| %>
-        <%= f.label :" イベント検索:" %>
+        <%= f.label :" host検索:" %>
         <%= f.text_field :keyword, value: @keyword %>
         <%= f.submit "検索" %>
       <% end %>

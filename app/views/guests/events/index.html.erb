@@ -2,26 +2,10 @@
   <div class="search-form text-right my-3">
     <%= form_with url: event_search_path, method: :get, local: true do |f| %>
       <%= f.label :"イベント検索:" %>
-      <%= f.text_field :keyword, value: @keyword %>
+      <%= f.text_field :keyword, value: @keyword, placeholder: "#でタグ検索" %>
       <%= f.submit "検索" %>
     <% end %>
   </div>
-  <% @events.each do |event| %>
-  <div class="row my-5">
-    <div class="col-md-6 my-3">
-      <%= link_to event_path(event.id) do %>
-        <%= attachment_image_tag event,:image, :fill, 300,300, format: 'jpeg', fallback: "no_image.png", size: '300x300'%>
-      <% end %>
-    </div>
-    <div class="col-md-6 m-3">
-      <p>タイトル<br><%= link_to event.title, event_path(event.id) %></p>
-      <p>内容<br><%= event.introduction.truncate(40) %></p>
-      <p>開催日時<br><%= event.date_and_time %></p>
-      <p>いいね:<%= event.likes.count %></p>
-    </div>
-  </div>
-  <% end %>
-  <div>
-    <%= paginate @events %>
+     <%= render 'event/index', events: @events %>
   </div>
 </div>

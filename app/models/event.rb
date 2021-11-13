@@ -40,7 +40,7 @@ class Event < ApplicationRecord
     new_tags = tags - current_tags
 
     old_tags.each do |old|
-      self.event_tags.delete EventTag.find_by(name: old)
+      self.tags.delete Tag.find_by(name: old)
     end
 
     new_tags.each do |new|

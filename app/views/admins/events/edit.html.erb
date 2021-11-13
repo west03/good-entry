@@ -34,6 +34,10 @@
         <div class="col-4"></div>
         <div class="col-8"><%= f.text_field :address %></div>
       </div>
+      <div class="field row my-3">
+        <div class="col-4"><%= f.label :タグ %></div>
+        <div class="col-8"><%= f.text_field :name, value: @tag_list %></div>
+      </div>
        <div class="field row my-3">
         <div class="col-4"><%= f.label :ステータス %></div>
         <div class="col-8"><%= f.select :holding_flag, Event.holding_flags.keys %></div>
