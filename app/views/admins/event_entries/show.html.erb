@@ -18,16 +18,16 @@
       </tr>
     </thad>
     <tbody>
-       <% @guests.each do |guest| %>
+       <% @event_entries.each do |guest| %>
       <tr>
-        <td><%= guest.guest.last_name %><%= guest.guest.first_name %></td>
-        <td><%= guest.guest.last_name_kana %><%= guest.guest.first_name_kana %></td>
-        <td><%= link_to "詳細へ", admins_guest_path(guest.guest.id) %></td>
+        <td><%= guest.last_name %><%= guest.first_name %></td>
+        <td><%= guest.last_name_kana %><%= guest.first_name_kana %></td>
+        <td><%= link_to "詳細へ", admins_guest_path(guest.id) %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
   <div class="my-3">
-    <p><%= paginate @guests %></p>
+    <p><%= paginate @event_entries %></p>
   </div>
 </div>

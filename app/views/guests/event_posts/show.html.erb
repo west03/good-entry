@@ -1,6 +1,13 @@
 <div class="container">
-  <div>
-    <h2 class="my-3"><%= @host.name %>のイベント一覧</h2>
+  <div class="row">
+    <h2 class="my-3 col-md-6"><%= @host.name %>のイベント一覧</h2>
+    <div class="search-form  col-md-6 text-right">
+      <%= form_with url: event_post_event_post_search_path(@host.id), method: :get, local: true do |f| %>
+        <%= f.label :" イベント検索:" %>
+        <%= f.text_field :keyword, value: @keyword %>
+        <%= f.submit "検索" %>
+      <% end %>
+    </div>
   </div>
   <% @hosts.each do |event| %>
   <div class="row my-5">

@@ -5,8 +5,6 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
 
-  get 'about' => 'homes#about'
-
   namespace :hosts do
     get 'hosts/unsubscribe' => 'hosts#unsubscribe', as: 'hosts_unsubscribe'
     patch 'hosts/withdraw' => 'hosts#withdraw'
@@ -15,10 +13,11 @@ Rails.application.routes.draw do
     resources :guests, only:[:show]
     resources :genres, except:[:new, :show]
     resources :event_posts, only:[:index, :show] do
-      get 'event_post_search' => 'event_posts#search'
+      get 'event_post_guest_search' => 'event_posts#guest_search'
     end
     get 'host_search' => 'hosts#search'
     get 'event_search' => 'events#search'
+    get 'event_post_search' => 'event_posts#search'
   end
 
   namespace :admins do
@@ -55,7 +54,9 @@ Rails.application.routes.draw do
         delete 'destroy_all'
       end
     end
-    resources :event_posts, only:[:show]
+    resources :event_posts, only:[:show] do
+      get 'event_post_search' => 'event_posts#search'
+    end
     get 'event_search' => 'events#search'
     get 'host_search' => 'hosts#search'
     get 'entry_search' => 'event_entries#search'

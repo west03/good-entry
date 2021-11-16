@@ -13,8 +13,8 @@ class Hosts::EventsController < ApplicationController
   def create
     @event = current_host.events.new(event_params)
     @genres = current_host.genres
-    if params[:event][:tag_name].present?
-      tag_list = params[:event][:tag_name].split(',')
+    if params[:event][:name].present?
+      tag_list = params[:event][:name].split(',')
       @event.save_event_tag(tag_list)
     end
     if @event.save

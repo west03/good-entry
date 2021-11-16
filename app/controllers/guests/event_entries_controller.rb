@@ -1,6 +1,9 @@
 class Guests::EventEntriesController < ApplicationController
   def index
-    @event_entries = current_guest.event_entries.page(params[:page]).per(10)
+    event = current_guest.event_entries.order(created_at: :desc)
+    event_array = event.pluck(:event_id)
+    event = Event.find(event_array)
+    @event_entries = Kaminari.paginate_array(event).page(params[:page]).per(10)
   end
 
   def create
@@ -10,7 +13,7 @@ class Guests::EventEntriesController < ApplicationController
   end
 
   def destroy
-    @event_entry = current_guest.event_entries.find(params[:id])
+    @event_entry = current_guest.event_entries.find_by(event_id: params[:id])
     @event_entry.destroy
     redirect_to event_entries_path
   end
@@ -18,13 +21,16 @@ class Guests::EventEntriesController < ApplicationController
   def destroy_all
     @event_entries = current_guest.event_entries.all
     @event_entries.destroy_all
-     redirect_to event_entries_path
+    redirect_to event_entries_path
   end
 
   def search
+    event = current_guest.event_entries.order(created_at: :desc)
+    event_array = event.pluck(:event_id)
+    event = Event.find(event_array)
     event_entries = []
-    current_guest.event_entries.each do |ee|
-      if ee.event.title.match(/#{params[:keyword]}/)
+    event.each do |ee|
+      if ee.title.match(/#{params[:keyword]}/)
         event_entries << ee
       end
     end

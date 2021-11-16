@@ -1,5 +1,10 @@
   <% events.each do |event| %>
-  <div class="row my-5">
+    <div class="mt-5" style="text-align: right;">
+      <% if current_host&.id == event.host_id %>
+        <%= link_to "削除", hosts_event_path(event),  method: :delete,  class:'btn btn-danger btn-sm' %>
+      <% end %>
+    </div>
+  <div class="row">
     <div class="col-md-5 my-3">
       <% if current_host %>
         <%= link_to hosts_event_path(event.id) do %>
@@ -24,7 +29,7 @@
       <% else %>
         <%= link_to event.title, admins_event_path(event.id) %>
       <% end %>
-      <p>内容<br><%= event.introduction.truncate(40) %></p>
+      <p class="text-break">内容<br><%= event.introduction.truncate(80) %></p>
       <p>開催日時<br><%= event.date_and_time %></p>
       <p>参加人数:<%= event.event_entries.count %></p>
       <p>いいね:<%= event.likes.count %></p>

@@ -15,6 +15,7 @@ class Guest < ApplicationRecord
   validates :telephone_number, presence: true
   validates :is_active, presence: true
 
+
   def already_liked?(event)
     self.likes.exists?(event_id: event.id)
   end
@@ -22,5 +23,6 @@ class Guest < ApplicationRecord
   def self.search(keyword)
     where(["last_name like? OR first_name like? ", "%#{keyword}%",  "%#{keyword}%"])
   end
+
 
 end

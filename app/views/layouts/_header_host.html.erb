@@ -7,28 +7,28 @@
       <p>こんにちは、<%= current_host.name %>さん！</p>
     <% else %>
     <% end %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <%= link_to "マイページ", hosts_host_path(current_host.id) %>
+          <%= link_to "マイページ", hosts_host_path(current_host.id), class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "host一覧", hosts_hosts_path %>
+          <%= link_to "host一覧", hosts_hosts_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "イベント一覧", hosts_events_path %>
+          <%= link_to "イベント一覧", hosts_events_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "投稿イベント一覧", hosts_event_posts_path %>
+          <%= link_to "投稿イベント一覧", hosts_event_posts_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "ジャンル一覧", hosts_genres_path %>
+          <%= link_to "ジャンル一覧", hosts_genres_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "ログアウト", destroy_host_session_path, method: :delete %>
+          <%= link_to "ログアウト", destroy_host_session_path, method: :delete, class: "nav-link" %>
         </li>
       </ul>
     </div>

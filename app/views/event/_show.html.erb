@@ -15,7 +15,7 @@
   </div>
   <div class="row my-3">
     <div class="col-md-4">内容詳細</div>
-    <div class="col-md-8"><%= event.introduction %></div>
+    <div class="col-md-8 "><p class="text-break"><%= event.introduction %></p></div>
   </div>
   <div class="row my-3">
     <div class="col-md-4">種類</div>
@@ -52,8 +52,13 @@
     <% else %>
     <% end %>
   </div>
-  <div>
-    <p>コメント件数：<%= @comments.count %></p>
+  <div class="row">
+    <div class="col-md-3">
+      <p>コメント件数：<%= @comments.count %></p>
+    </div>
+    <div class="col-md-9">
+      <p>いいね:<%= event.likes.count %></p>
+    </div>
     <% @comments.each do |comment| %>
 	  <div class="comments-index mb-2">
       <div class="mt-3">

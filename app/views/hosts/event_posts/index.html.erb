@@ -3,7 +3,7 @@
   <div class="row my-3">
     <div class="bd-highlight col-md-6 text-lift"><%= button_to "+",   new_hosts_event_path, method: :get  %></div>
     <div class="search-form  col-md-6 text-right">
-      <%= form_with url:  hosts_event_post_event_post_search_path(:event_post_id), method: :get, local: true do |f| %>
+      <%= form_with url:  hosts_event_post_search_path, method: :get, local: true do |f| %>
         <%= f.label :" イベント検索:" %>
         <%= f.text_field :keyword, value: @keyword,  placeholder: "#でタグ検索" %>
         <%= f.submit "検索" %>

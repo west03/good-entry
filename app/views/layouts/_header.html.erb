@@ -3,22 +3,22 @@
     <%= link_to root_path do %>
       <%= image_tag 'スクリーンショット.png', size: '230x80' %>
     <% end %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <%= link_to "host新規登録", new_host_registration_path %>
+          <%= link_to "host新規登録", new_host_registration_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "hostログイン", new_host_session_path %>
+          <%= link_to "hostログイン", new_host_session_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "guest新規登録", new_guest_registration_path %>
+          <%= link_to "guest新規登録", new_guest_registration_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "guestログイン", new_guest_session_path %>
+          <%= link_to "guestログイン", new_guest_session_path, class: "nav-link" %>
         </li>
       </ul>
     </div>

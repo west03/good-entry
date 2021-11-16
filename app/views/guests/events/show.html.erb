@@ -10,13 +10,14 @@
   </div>
   <div class="row my-3">
     <div class="col-2"></div>
-    <div class="col-10">
-      <%= attachment_image_tag @event, :image, :fill, 300, 300, format: 'jpeg',fallback: "no_image.png", size: '300x300' %>
+    <div class="col-md-8">
+      <%= attachment_image_tag @event, :image, :fill, 450, 300, format: 'jpeg',fallback: "no_image.png", size: '450x300'%>
     </div>
+    <div class="col-2"></div>
   </div>
   <div class="row my-3">
     <div class="col-md-3">内容詳細</div>
-    <div class="col-md-9"><%= @event.introduction %></div>
+    <div class="col-md-9"><p class="text-break"><%= @event.introduction %></p></div>
   </div>
   <div class="row my-3">
     <div class="col-md-3">種類</div>
@@ -44,7 +45,15 @@
       <%= f.hidden_field :guest_id, value:current_guest.id %>
       <%= f.hidden_field :event_id, value: @event.id %>
         <% if current_guest.event_entries.pluck(:event_id).exclude?(@event.id) %>
-          <%= f.submit "イベントに参加する",class: "btn-sm btn-success" %>
+          <% if @event.holding_flag == '募集中' %>
+            <%= f.submit "イベントに参加する",class: "btn-sm btn-success" %>
+          <% elsif @event.holding_flag == '募集終了' %>
+            <p><%= @event.holding_flag %></p>
+          <% else %>
+            <p>応募は現在しておりません</p>
+          <% end %>
+        <% else %>
+          <%= link_to "応募しました", event_entries_path, class: "btn-sm btn-outline-info" %>
         <% end %>
       <% end %>
     </div>
@@ -65,7 +74,14 @@
         <div class="col-md-3"><%= f.submit "送信する", class: "btn btn-success mb-4" %></div>
       </div>
     <% end %>
-    <p>コメント件数：<%= @comments.count %></p>
+    <dvi class="row">
+      <dvi class="col-md-3">
+        <p>コメント件数：<%= @comments.count %></p>
+      </dvi>
+      <div class="col-md-9">
+        <p>いいね:<%= @event.likes.count %></p>
+      </div>
+    </dvi>
     <% @comments.each do |comment| %>
 	  <div class="comments-index mb-2">
       <div class="mt-3">

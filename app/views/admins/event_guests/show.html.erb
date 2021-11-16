@@ -20,11 +20,11 @@
     <tbody>
       <% @event_entries.each do |event| %>
       <tr>
-        <td><%= event.event.title %></td>
-        <td><%= event.event.prefecture %></td>
-        <td><%= event.event.date_and_time %></td>
-        <td><%= event.event.holding_flag %></td>
-        <td><%= link_to "詳細へ", admins_event_path(event.event.id) %></td>
+        <td><%= event.title %></td>
+        <td><%= event.prefecture %></td>
+        <td><%= event.date_and_time %></td>
+        <td><%= event.holding_flag %></td>
+        <td><%= link_to "詳細へ", admins_event_path(event.id) %></td>
       </tr>
       <% end %>
     </tbody>

@@ -2,14 +2,18 @@ class Admins::EventGuestsController < ApplicationController
   before_action :authenticate_admin!
   def show
     @guest = Guest.find(params[:id])
-    @event_entries = @guest.event_entries.page(params[:page]).per(10)
+    event_array = @guest.event_entries.pluck(:event_id)
+    p_event = Event.find(event_array)
+    @event_entries = Kaminari.paginate_array(p_event).page(params[:page]).per(10)
   end
 
   def search
     @guest = Guest.find(params[:event_guest_id])
+    event_array = @guest.event_entries.pluck(:event_id)
+    event_srch = Event.find(event_array)
     event_entries = []
-    @guest.event_entries.each do |ee|
-      if ee.event.title.match(/#{params[:keyword]}/)
+    event_srch.each do |ee|
+      if ee.title.match(/#{params[:keyword]}/)
         event_entries << ee
       end
     end

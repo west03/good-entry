@@ -23,3 +23,30 @@
   height: 300px;
   object-fit: cover;
 }
+
+.img_frame {
+  height: 380px;
+  object-fit: cover;
+}
+
+@media screen and (max-width:1024px){
+  .img_frame {
+  height: 300px;
+  object-fit: cover;
+}
+}
+
+@media screen and (max-width:768px) {
+ .img_frame {
+  height: 200px;
+  object-fit: cover;
+  }
+}
+
+@media screen and (max-width:425px){
+  .img_frame {
+  height: 150px;
+  object-fit: cover;
+
+}
+}

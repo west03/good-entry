@@ -6,23 +6,7 @@
       <%= f.submit "検索" %>
     <% end %>
   </div>
-  <table class="table">
-    <thaed>
-      <tr>
-        <th>名前</th>
-        <th></th>
-      </tr>
-    </thaed>
-    <tbody>
-      <% @hosts.each do |host| %>
-      <tr>
-        <td><%= host.name %></td>
-        <td><%= link_to "詳細へ", host_path(host.id) %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
   <div>
-    <%= paginate @hosts %>
+    <%= render 'host/index', hosts: @hosts %>
   </div>
 </div>
