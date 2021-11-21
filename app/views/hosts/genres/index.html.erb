@@ -1,0 +1,45 @@
+<div class="container">
+   <h2>ジャンル一覧・追加</h2>
+  <% if @genre.errors.any? %>
+    <%= @genre.errors.count %>件のエラーが発生しました
+    <% @genre.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+    <div class="field row my-3">
+      <%= form_with model: @genre, url: hosts_genres_path, local: true do |f| %>
+      <%= f.hidden_field :host_id, value: current_host.id %>
+        <p>
+          <%= f.label :ジャンル名 %>
+          <span class="col-md-6">
+            <%= f.text_field :name, autofocus: true%>
+          </span>
+          <span class="actions col-md-6">
+            <%= f.submit "新規登録", class: "btn-sm btn-success"  %>
+          </span>
+        </p>
+      <% end %>
+      </div>
+  <table class="mb-3" border="1">
+    <thead>
+      <tr>
+        <th style="width: 150px">ジャンル</th>
+        <th style="width: 200px" colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @genres.each do |genre| %>
+      <tr>
+        <td><%= genre.name %></td>
+        <td align="center">
+          <%= link_to "編集する",  edit_hosts_genre_path(genre), class: "btn-sm btn-success mr-3" %>
+          <%= link_to "削除する",  hosts_genre_path(genre.id), method: :delete, class: "btn-sm btn-danger" %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+   <div class="pagination">
+    <%= paginate @genres %>
+  </div>
+</div>

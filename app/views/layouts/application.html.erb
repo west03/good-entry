@@ -7,9 +7,28 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <meta name="viewport" content="width=device-width,initial-scale=1.0">
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if admin_signed_in? %>
+        <%= render 'layouts/header_admin' %>
+      <% elsif host_signed_in? %>
+        <%= render 'layouts/header_host' %>
+      <% elsif guest_signed_in? %>
+        <%= render 'layouts/header_guest' %>
+      <% else %>
+        <%= render 'layouts/header' %>
+      <% end %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <div class="text-center bg-secondary text-white">
+        <p>CopyRight good-entry.inc</p>
+      </div>
+    </footer>
   </body>
 </html>

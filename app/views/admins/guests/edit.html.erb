@@ -1,0 +1,53 @@
+<div class="container">
+  <h2><%= @guest.last_name %> <%= @guest.first_name %>さんの情報編集</h2>
+    <% if @guest.errors.any? %>
+      <%= @guest.errors.count %>件のエラーが発生しました
+      <% @guest.errors.full_messages.each do |message| %><br>
+        <%= message %>
+      <% end %>
+    <% end %>
+  <div class="row">
+    <p class="col-md-4 my-3">guestID</p>
+    <p class="col-md-4 my-3"><%= @guest.id %></p>
+    <div class="col-4"></div>
+  </div>
+  <div>
+    <%= form_with model: @guest, url: admins_guest_path(@guest.id), local: true do |f| %>
+    <div class="field row">
+      <div class="col-md-4 mt-3"><%= f.label :名前 %></div>
+      <div class="col-md-4 mt-3"><%= f.text_field :last_name, autofocus: true, autocomplete: true, placeholder: "(姓)" %></div>
+      <div class="col-md-4 my-3"><%= f.text_field :first_name, autofocus: true, autocomplete: true, placeholder: "(名)" %></div>
+    </div>
+    <div class="field row">
+      <div class="col-md-4 mt-3"><%= f.label :フリガナ %></div>
+      <div class="col-md-4 mt-3"><%= f.text_field :last_name_kana, autofocus: true, autocomplete: true,  placeholder: "(セイ)" %></div>
+      <div class="col-md-4 my-3"><%= f.text_field :first_name_kana, autofocus: true, autocomplete: true,  placeholder: "(メイ)" %></div>
+    </div>
+    <div class="field row my-3">
+      <div class="col-md-4"><%= f.label :メールアドレス %></div>
+      <div class="col-md-4"><%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30 %></div>
+    </div>
+    <div class="field row my-3">
+      <div class="col-md-4"><%= f.label :"郵便番号(ハイフンなし)" %></div>
+      <div class="col-md-8"><%= f.text_field :postal_code, autofocus: true, autocomplete: true, size: 40 %></div>
+    </div>
+    <div class="field row my-3">
+      <div class="col-md-4"><%= f.label :住所 %></div>
+      <div class="col-md-8"><%= f.text_field :address, autofocus: true, autocomplete: true, size: 40 %></div>
+    </div>
+    <div class="field row my-3">
+      <div class="col-md-4"><%= f.label :"電話番号(ハイフンなし)" %></div>
+      <div class="col-md-8"><%= f.text_field :telephone_number, autofocus: true, autocomplete: true, size: 40 %></div>
+    </div>
+    <div class="field row my-3">
+      <div class="col-md-4"><%= f.label :ステータス %></div>
+      <div class="col-md-4"><%= f.radio_button :is_active, :true %>有効</div>
+      <div class="col-md-4"><%= f.radio_button :is_active, :false %>無効</div>
+    </div>
+    <div class="action row">
+        <div class="col-3"></div>
+        <div class="co-md-9"><%= f.submit "変更を保存する", class: "btn-sm btn-success" %></div>
+    </div>
+    <% end%>
+  </div>
+</div>

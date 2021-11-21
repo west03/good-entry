@@ -1,0 +1,79 @@
+  <% events.each do |event| %>
+  <div class="card mb-3" style="max-width: 100%;">
+  <div class="row no-gutters">
+    <div class="col-md-6 p-2">
+      <% if current_host %>
+        <%= link_to hosts_event_path(event.id) do %>
+          <%= attachment_image_tag event,:image, format: 'jpeg', fallback: "no_image.png", :class => "card-img-top", :alt => "Card image cap"%>
+         <% end %>
+      <% elsif current_guest  %>
+        <%= link_to event_path(event.id) do %>
+          <%= attachment_image_tag event,:image, format: 'jpeg', fallback: "no_image.png", :class => "card-img-top", :alt => "Card image cap"%>
+        <% end %>
+      <% else %>
+        <%= link_to admins_event_path(event.id) do %>
+          <%= attachment_image_tag event,:image, format: 'jpeg', fallback: "no_image.png", :class => "card-img-top", :alt => "Card image cap"%>
+        <% end %>
+      <% end %>
+      <div class="my-3 ml-3">
+        <% if event.holding_flag == "募集中" %>
+          <p class="text-success"><%= event.holding_flag %></p>
+        <% elsif event.holding_flag == "募集終了" %>
+          <p class="text-danger"><%= event.holding_flag %></p>
+        <% elsif event.holding_flag == "延期" || event.holding_flag == "中止" %>
+          <p class="text-info"><%= event.holding_flag %></p>
+        <% else %>
+          <p><%= event.holding_flag %></p>
+        <% end %>
+      </div>
+      <div class="my-3 ml-3">
+        <% if current_host&.id == event.host_id %>
+          <%= link_to "削除", hosts_event_path(event), method: :delete,  class:'btn-danger btn-sm' %>
+        <% elsif current_admin %>
+          <%= link_to "削除",admins_event_path(event), method: :delete, class:'btn-danger btn-sm' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title">
+        <% if current_host %>
+          <%= link_to event.title, hosts_event_path(event.id) %></p>
+        <% elsif current_guest  %>
+          <%= link_to event.title, event_path(event.id) %>
+        <% else %>
+          <%= link_to event.title, admins_event_path(event.id) %>
+        <% end %>
+        </h5>
+        <p class="card-text">
+          <p class="text-break">内容<br><%= simple_format(event.introduction.truncate(80)) %></p>
+      <p>開催日時<br><%= event.date_and_time %></p>
+      <p>参加人数:<%= event.event_entries.count %></p>
+      <p>いいね:<%= event.likes.count %></p>
+      <p>コメント:<%= event.comments.count %></p>
+      <p>タグ:
+        <% if current_host %>
+          <% event.tags.each do |tag| %>
+            <%= link_to tag.name, hosts_event_search_path(keyword: "##{tag.name}") %>
+          <% end %>
+        <% elsif current_guest  %>
+          <% event.tags.each do |tag| %>
+            <%= link_to tag.name, event_search_path(keyword: "##{tag.name}") %>
+          <% end %>
+        <% else %>
+          <% event.tags.each do |tag| %>
+            <%= link_to tag.name, admins_event_search_path(keyword: "##{tag.name}") %>
+          <% end %>
+        <% end %>
+      </p>
+        </p>
+        <p class="card-text"><small class="text-muted">更新時間<%= event.updated_at.to_s(:datetime_jp)%></small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <% end %>
+  <div class="pagination">
+    <%= paginate events %>
+  </div>

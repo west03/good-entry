@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>マイページ</h2>
+  <div class="row">
+    <p class="col-md-3">登録情報</p>
+    <p class="col-md-3"><%= link_to "編集する",  edit_guests_path(@guest.id), class: "btn btn-success" %></p>
+    <div class="col-6"></div>
+  </div>
+  <div>
+    <%= render "guest/show", guest: @guest %>
+  </div>
+  <div class="row">
+    <p class="col-3">参加イベント数:<%= @guest.event_entries.count %></p>
+    <p class="col-3"><%= link_to "一覧を見る", event_entries_path, class: "btn btn-primary" %></p>
+  </div>
+</div>

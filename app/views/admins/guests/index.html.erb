@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row my-3">
+    <h2 class="col-md-6">guest一覧</h2>
+    <div class="search-form  col-md-6 text-right">
+      <%= form_with url: admins_guest_search_path, method: :get, local: true do |f| %>
+        <%= f.label :" guest検索:" %>
+        <%= f.text_field :keyword, value: @keyword %>
+        <%= f.submit "検索" %>
+      <% end %>
+    </div>
+  </div>
+  <table class="table">
+    <thaed>
+      <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>フリカナ</th>
+        <th>ステータス</th>
+        <th>イベント参加</th>
+        <th></th>
+      </tr>
+    </thaed>
+    <tbody>
+      <% @guests.each do |guest| %>
+      <tr>
+        <td><%= guest.id %></td>
+        <td><%= guest.last_name %><%= guest.first_name %></td>
+        <td><%= guest.last_name_kana %><%= guest.first_name_kana %></td>
+        <td>
+          <% if guest.is_active == true %>
+            <p class="text-success">有効</p>
+          <% else %>
+            <p class="text-secondary">退会</p>
+          <% end %>
+        </td>
+        <td><%= guest.event_entries.count %></td>
+        <td><%= link_to "詳細へ", admins_guest_path(guest.id), class: "btn-sm btn btn-primary" %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <div style="text-align:center">
+    <%= paginate @guests %>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>host一覧</h2>
+  <div class="search-form text-right my-3">
+    <%= form_with url: hosts_host_search_path, method: :get, local: true do |f| %>
+      <%= f.label :" host検索:" %>
+      <%= f.text_field :keyword, value: @keyword %>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
+  <div>
+    <%= render 'host/index', hosts: @hosts %>
+  </div>
+</div>

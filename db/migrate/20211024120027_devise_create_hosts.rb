@@ -31,12 +31,12 @@ class DeviseCreateHosts < ActiveRecord::Migration[5.2]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-      
+
       t.string :name
       t.string :postal_code
       t.string :address
       t.string :telephone_number
-      t.boolean :is_active
+      t.boolean :is_active, default:"true"
       t.timestamps null: false, default: "true"
 
       t.timestamps null: false

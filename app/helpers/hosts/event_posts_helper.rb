@@ -1,0 +1,2 @@
+module Hosts::EventPostsHelper
+end

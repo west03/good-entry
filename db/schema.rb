@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_25_212626) do
+ActiveRecord::Schema.define(version: 2021_11_03_123500) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,14 +32,20 @@ ActiveRecord::Schema.define(version: 2021_10_25_212626) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "events", force: :cascade do |t|
+  create_table "event_entries", force: :cascade do |t|
     t.integer "guest_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
     t.integer "host_id"
     t.integer "genre_id"
     t.string "title"
     t.text "introduction"
     t.string "image_id"
-    t.string "participant"
+    t.string "particpant"
     t.integer "prefecture"
     t.string "address"
     t.string "date_and_time"
@@ -49,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_10_25_212626) do
   end
 
   create_table "genres", force: :cascade do |t|
+    t.string "host_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,7 +74,7 @@ ActiveRecord::Schema.define(version: 2021_10_25_212626) do
     t.string "postal_code"
     t.string "address"
     t.string "telephone_number"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_guests_on_email", unique: true
@@ -84,7 +91,7 @@ ActiveRecord::Schema.define(version: 2021_10_25_212626) do
     t.string "postal_code"
     t.string "address"
     t.string "telephone_number"
-    t.boolean "is_active"
+    t.boolean "is_active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_hosts_on_email", unique: true

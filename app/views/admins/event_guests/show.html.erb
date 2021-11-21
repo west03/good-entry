@@ -1,0 +1,35 @@
+<div class="container">
+  <h2 class="my-3"><%= @guest.last_name %><%= @guest.first_name %>さんの参加イベント一覧</h2>
+  <div class="search-form text-right">
+    <%= form_with url: admins_event_guest_event_guest_search_path(@guest.id), method: :get, local: true do |f| %>
+       <%= f.label :" イベント検索:" %>
+      <%= f.text_field :keyword, value: @keyword %>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
+  <table class="table my-3">
+    <thaed>
+      <tr>
+        <th>タイトル</th>
+        <th>場所</th>
+        <th>開催日時</th>
+        <th>ステータス</th>
+        <th></th>
+      </tr>
+    </thaed>
+    <tbody>
+      <% @event_entries.each do |event| %>
+      <tr>
+        <td><%= event.title %></td>
+        <td><%= event.prefecture %></td>
+        <td><%= event.date_and_time %></td>
+        <td><%= event.holding_flag %></td>
+        <td><%= link_to "詳細へ", admins_event_path(event.id) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <%= paginate @event_entries %>
+  </div>
+</div>

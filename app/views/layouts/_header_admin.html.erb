@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <%= link_to admins_root_path do %>
+      <%= image_tag 'スクリーンショット.png', size: '230x80' %>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to "イベント一覧", admins_events_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "host一覧", admins_hosts_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "guest一覧", admins_guests_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

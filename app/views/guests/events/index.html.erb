@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>イベント一覧</h2>
+  <div class="search-form text-right my-3">
+    <%= form_with url: event_search_path, method: :get, local: true do |f| %>
+      <%= f.label :"イベント検索:" %>
+      <%= f.text_field :keyword, value: @keyword, placeholder: "#でタグ検索" %>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
+  <div>
+     <%= render 'event/index', events: @events %>
+  </div>
+</div>

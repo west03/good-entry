@@ -1,0 +1,22 @@
+<div class="container">
+   <h2>ジャンル編集</h2>
+  <% if @genre.errors.any? %>
+    <%= @genre.errors.count %>件のエラーが発生しました
+    <% @genre.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+    <div class="row">
+      <%= form_with model: @genre, url: hosts_genre_path, local: true do |f| %>
+         <p>
+          <%= f.label :ジャンル名 %>
+          <span class="col-6">
+            <%= f.text_field :name, autofocus: true%>
+          </span>
+          <span class="actions col-6">
+            <%= f.submit "新規登録", class: "btn-sm btn-success"  %>
+          </span>
+        </p>
+      <% end %>
+    </div>
+</div>

@@ -1,0 +1,2 @@
+module Hosts::EventEntriesHelper
+end

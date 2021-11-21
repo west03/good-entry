@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>イベント新規登録</h2>
+  <% if @event.errors.any? %>
+    <%= @event.errors.count %>件のエラーが発生しました
+    <% @event.errors.full_messages.each do |message| %><br>
+      <%= message %>
+    <% end %>
+  <% end %>
+  <%= form_with model: @event, url: hosts_events_path, local: true do |f| %>
+    <div>
+      <div class="field row my-3">
+        <div class="col-md-4"><%= f.label :タイトル %></div>
+        <div class="col-md-8"><%= f.text_field :title, size: 30 %></div>
+      </div>
+      <div class="field row my-3">
+        <div class="col-md-4"><%= f.label :イベント画像 %></div>
+        <div class="col-md-8"><%= f.attachment_field :image %></div>
+      </div>
+      <div class="field row my-3">
+        <div class="col-md-4"><%= f.label :内容詳細 %></div>
+        <div class="col-md-8"><%= f.text_area :introduction, size: "50x8" %></div>
+      </div>
+       <div class="field row my-3">
+        <div class="col-md-4"><%= f.label :種類 %></div>
+        <div class="col-md-8"><%= f.collection_select :genre_id, @genres, :id, :name, prompt: "選択してください"  %></div>
+      </div>
+      <div class="field row my-3">
+        <div class="col-md-4"><%= f.label :開催日時 %></div>
+        <div class="col-md-8"><%= f.text_field :date_and_time, size:40 %></div>
+      </div>
+       <div class="field row mb-3">
+        <div class="col-md-4"><%= f.label :開催場所 %></div>
+        <div class="col-md-8 my-3"><%= f.select :prefecture, Event.prefectures.keys, {prompt: "選択してください"}, class: "prefecture-select" %></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-8"><%= f.text_field :address, size: 40 %></div>
+      </div>
+       <div class="field row my-3">
+        <div class="col-md-4"><%= f.label :タグ %></div>
+        <div class="col-md-8"><%= f.text_field :name, size: 30, placeholder: "例 清掃,地域活動,参加" %></div>
+      </div>
+      <div class="actions row my-3">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"><%= f.submit "新規作成", class: "btn-sm btn-primary" %></div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+  <% end %>
+</div>

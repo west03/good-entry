@@ -1,0 +1,37 @@
+ <table class="table">
+    <thaed>
+      <tr>
+        <th>名前</th>
+        <th>投稿数</th>
+        <th>ステータス</th>
+        <th></th>
+      </tr>
+    </thaed>
+    <tbody>
+      <% hosts.each do |host| %>
+      <tr>
+        <td><%= host.name %></td>
+        <td><%= host.event_ids.count %></td>
+        <td>
+          <% if host.is_active == true %>
+            <p class="text-success">有効</p>
+          <% else %>
+            <p class="text-secondary">退会</p>
+          <% end %>
+        </td>
+        <td>
+          <% if current_host %>
+             <%= link_to "詳細へ", hosts_host_path(host.id), class: "btn-sm btn btn-primary" %>
+          <% elsif current_guest  %>
+              <%= link_to "詳細へ", host_path(host.id) %>
+          <% else %>
+              <%= link_to "詳細へ", admins_host_path(host.id), class: "btn-sm btn btn-primary" %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <div style="text-align:center">
+    <%= paginate hosts %>
+  </div>

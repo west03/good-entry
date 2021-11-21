@@ -79,3 +79,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'rubocop-rails'
 end
+
+gem 'rails-i18n'
+
+gem 'pry-rails'

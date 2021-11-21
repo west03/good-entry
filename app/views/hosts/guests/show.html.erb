@@ -1,0 +1,10 @@
+<div class="container">
+  <h2 class="my-2"><%= @guest.last_name %> <%= @guest.first_name %>さんの詳細</h2>
+  <div class="row">
+    <h2 class="col-md-3 my-3">登録情報</h2>
+    <div class="col-9"></div>
+  </div>
+ <div>
+   <%= render "guest/show", guest: @guest %>
+ </div>
+</div>
