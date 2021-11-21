@@ -25,8 +25,8 @@ class Guests::GuestsController < ApplicationController
   def withdraw
     @guest = Guest.find(current_guest.id)
     if @guest.update(is_active: false)
-    reset_session
-    redirect_to root_path
+      reset_session
+      redirect_to root_path
     else
       render :show
     end

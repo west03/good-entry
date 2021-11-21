@@ -5,16 +5,13 @@ class Hosts::EventPostsController < ApplicationController
   end
 
   def show
-     @host = Host.find(params[:id])
+    @host = Host.find(params[:id])
     @hosts = @host.events.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def search
     if (params[:keyword])[0] == '#'
-      events = current_host.events
-      @event = events.pluck(:tag_name)
-      @events = Tag.search(params[:keyword]).where(tag_name: @event.pluck(:tag_name)).order('created_at desc').page(params[:page]).per(10)
-      byebug
+      @events = Tag.search(params[:keyword]).where(host_id: current_host.id).order('created_at desc').page(params[:page]).per(10)
     else
       @events = current_host.events.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(10)
       @keyword = params[:keyword]
@@ -32,5 +29,4 @@ class Hosts::EventPostsController < ApplicationController
     @keyword = params[:keyword]
     render :show
   end
-
 end

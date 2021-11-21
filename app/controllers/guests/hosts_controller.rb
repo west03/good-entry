@@ -1,5 +1,5 @@
 class Guests::HostsController < ApplicationController
-   before_action :authenticate_guest!
+  before_action :authenticate_guest!
   def index
     @hosts = Host.all.order(created_at: :desc).page(params[:page]).per(10)
   end

@@ -1,5 +1,5 @@
 class Hosts::EventEntriesController < ApplicationController
-   before_action :authenticate_host!
+  before_action :authenticate_host!
 
   def show
     @event = Event.find(params[:id])

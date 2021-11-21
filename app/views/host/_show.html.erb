@@ -36,11 +36,11 @@
     <div class="col-3"></div>
     <div class="col-md-3">
       <% if current_host %>
-             <%= link_to "投稿イベント一覧", hosts_event_post_path(host.id), class: "btn-sm btn btn-primary" %>
+             <%= link_to "投稿イベント一覧", hosts_event_post_path(host.id), class: "btn btn-primary" %>
       <% elsif current_guest  %>
-          <%= link_to "投稿イベント一覧", event_post_path(host.id), class: "btn-sm btn btn-primary" %>
+          <%= link_to "投稿イベント一覧", event_post_path(host.id), class: "btn btn-primary" %>
       <% else %>
-          <%= link_to "投稿イベント一覧", admins_event_post_path(host.id), class: "btn-sm btn btn-primary" %>
+          <%= link_to "投稿イベント一覧", admins_event_post_path(host.id), class: "btn btn-primary" %>
       <% end %>
     </div>
     <div class="col-md-3">
