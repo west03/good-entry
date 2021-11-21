@@ -83,3 +83,8 @@ end
 gem 'rails-i18n'
 
 gem 'pry-rails'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
