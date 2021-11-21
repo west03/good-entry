@@ -1,4 +1,5 @@
 class Tag < ApplicationRecord
+
   has_many :tag_maps, dependent: :destroy
   has_many :events, through: :tag_maps
 
@@ -10,4 +11,5 @@ class Tag < ApplicationRecord
       Event.all
     end
   end
+  
 end

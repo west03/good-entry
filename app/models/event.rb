@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+
   has_many :event_entries, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -50,4 +51,5 @@ class Event < ApplicationRecord
       self.tags << event_tag
     end
   end
+  
 end
