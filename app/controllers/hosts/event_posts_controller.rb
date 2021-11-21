@@ -1,18 +1,20 @@
 class Hosts::EventPostsController < ApplicationController
+  before_action :authenticate_host!
   def index
     @events = current_host.events.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
-    @event = Event.find(params[:id])
-    guest_array = @event.event_entries.pluck(:guest_id)
-    p_guests = Guest.find(guest_array)
-    @event_entries = Kaminari.paginate_array(p_guests).page(params[:page]).per(10)
+     @host = Host.find(params[:id])
+    @hosts = @host.events.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def search
     if (params[:keyword])[0] == '#'
-      @events = Tag.search(params[:keyword]).order('created_at desc').page(params[:page]).per(10)
+      events = current_host.events
+      @event = events.pluck(:tag_name)
+      @events = Tag.search(params[:keyword]).where(tag_name: @event.pluck(:tag_name)).order('created_at desc').page(params[:page]).per(10)
+      byebug
     else
       @events = current_host.events.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(10)
       @keyword = params[:keyword]
@@ -20,11 +22,15 @@ class Hosts::EventPostsController < ApplicationController
     render :index
   end
 
-  def guest_search
-    @event = Event.find(params[:event_post_id])
-    @event_entries = @event.event_entries
-    @event_entries = Guest.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(10)
+  def event_search
+    @host = Host.find(params[:event_post_id])
+    events = []
+    @host.events.reverse.each do |ee|
+      events << ee if ee.title.match(/#{params[:keyword]}/)
+    end
+    @hosts = Kaminari.paginate_array(events).page(params[:page]).per(10)
     @keyword = params[:keyword]
     render :show
   end
+
 end

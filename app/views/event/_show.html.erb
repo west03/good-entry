@@ -10,12 +10,12 @@
   <div class="row my-3">
     <div class="col-2"></div>
     <div class="col-10">
-      <%= attachment_image_tag event, :image, :fill, 300, 300, format: 'jpeg',fallback: "no_image.png", size: '300x300' %>
+      <%= attachment_image_tag event, :image, :fill, 450, 300, format: 'jpeg',fallback: "no_image.png", size: '450x300' %>
     </div>
   </div>
   <div class="row my-3">
     <div class="col-md-4">内容詳細</div>
-    <div class="col-md-8 "><p class="text-break"><%= event.introduction %></p></div>
+    <div class="col-md-8 "><p class="text-break"><%= simple_format(event.introduction) %></p></div>
   </div>
   <div class="row my-3">
     <div class="col-md-4">種類</div>
@@ -40,16 +40,20 @@
     </div>
   </div>
   <div class="row my-3">
+    <% if current_admin %>
+        <div class="col-md-4"><%= link_to "一覧へ", admins_events_path, class: "btn btn-primary" %></div>
+    <% elsif current_host %>
+      <div class="col-md-4"><%= link_to "一覧へ", hosts_events_path, class: "btn btn-primary" %></div>
+    <% end %>
      <% if current_admin %>
-      <div class="col-md-4"><%= link_to "参加者一覧", admins_event_entry_path(event.id) %></div>
+      <div class="col-md-4"><%= link_to "参加者一覧", admins_event_entry_path(event.id), class: "btn btn-info" %></div>
      <% elsif current_host&.id == event.host_id %>
-      <div class="col-md-4"><%= link_to "参加者一覧", hosts_event_post_path(event.id) %></div>
+      <div class="col-md-4"><%= link_to "参加者一覧", hosts_event_entry_path(event.id), class: "btn btn-info" %></div>
     <% end %>
     <% if current_admin %>
-        <div class="col-md-4"><%= link_to "編集する", edit_admins_event_path(event.id) %></div>
+        <div class="col-md-4"><%= link_to "編集する", edit_admins_event_path(event.id),class: "btn btn-success" %></div>
     <% elsif current_host&.id == event.host_id %>
-      <div class="col-md-4"><%= link_to "編集する", edit_hosts_event_path(event.id) %></div>
-    <% else %>
+      <div class="col-md-4"><%= link_to "編集する", edit_hosts_event_path(event.id),class: "btn btn-success" %></div>
     <% end %>
   </div>
   <div class="row">
@@ -59,6 +63,7 @@
     <div class="col-md-9">
       <p>いいね:<%= event.likes.count %></p>
     </div>
+  </div>
     <% @comments.each do |comment| %>
 	  <div class="comments-index mb-2">
       <div class="mt-3">
@@ -68,10 +73,9 @@
       </div>
       <div class="d-flex bd-highlight">
         <div class="p-2 w-100 bd-highlight">
-          <%= comment.comment_content %>
+          <p class="text-break"><%= simple_format(comment.comment_content) %></p>
         </div>
       </div>
     </div>
     <% end %>
     <%= paginate comments  %>
-  </div>

@@ -17,5 +17,4 @@ class Guests::CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:comment_content, :event_id, :guest_id)
   end
-
 end

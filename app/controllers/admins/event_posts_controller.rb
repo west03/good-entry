@@ -6,12 +6,10 @@ class Admins::EventPostsController < ApplicationController
   end
 
   def search
-   @host = Host.find(params[:event_post_id])
+    @host = Host.find(params[:event_post_id])
     events = []
     @host.events.each do |ee|
-      if ee.title.match(/#{params[:keyword]}/)
-        events << ee
-      end
+      events << ee if ee.title.match(/#{params[:keyword]}/)
     end
     @events = Kaminari.paginate_array(events).page(params[:page]).per(10)
     @keyword = params[:keyword]

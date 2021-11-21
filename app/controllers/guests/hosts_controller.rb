@@ -1,4 +1,5 @@
 class Guests::HostsController < ApplicationController
+   before_action :authenticate_guest!
   def index
     @hosts = Host.all.order(created_at: :desc).page(params[:page]).per(10)
   end
@@ -8,9 +9,8 @@ class Guests::HostsController < ApplicationController
   end
 
   def search
-    @hosts = Host.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(5)
+    @hosts = Host.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(10)
     @keyword = params[:keyword]
     render :index
   end
-
 end

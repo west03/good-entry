@@ -72,7 +72,6 @@ gem 'bootstrap', '~> 4.5'
 gem 'font-awesome-sass', '~> 5.13'
 gem 'jquery-rails'
 
-
 gem 'enum_help'
 gem 'pry-byebug'
 
@@ -83,4 +82,4 @@ end
 
 gem 'rails-i18n'
 
- gem 'pry-rails'
+gem 'pry-rails'

@@ -39,29 +39,28 @@
     <div class="col-md-9"><%= @event.holding_flag %></div>
   </div>
   <div class="row my-3">
-    <div class="col-md-3"></div>
+    <div class="col-md-4"><%= link_to "一覧へ", events_path, class: "btn btn-primary" %></div>
     <div class="col-md-4">
       <%= form_with model: @event_entry, url: event_entries_path, method: :post, local: true do |f| %>
       <%= f.hidden_field :guest_id, value:current_guest.id %>
       <%= f.hidden_field :event_id, value: @event.id %>
         <% if current_guest.event_entries.pluck(:event_id).exclude?(@event.id) %>
           <% if @event.holding_flag == '募集中' %>
-            <%= f.submit "イベントに参加する",class: "btn-sm btn-success" %>
+            <%= f.submit "イベントに参加する",class: "btn btn-success" %>
           <% elsif @event.holding_flag == '募集終了' %>
             <p><%= @event.holding_flag %></p>
           <% else %>
             <p>応募は現在しておりません</p>
           <% end %>
         <% else %>
-          <%= link_to "応募しました", event_entries_path, class: "btn-sm btn-outline-info" %>
+          <%= link_to "応募しました", event_entries_path, class: "btn btn-outline-info" %>
         <% end %>
       <% end %>
     </div>
-    <div class="col-5"></div>
+    <div class="col-4"></div>
   </div>
-  <div class="row my-3">
-    <div class="col-3"></div>
-    <div class="col-md-9">
+  <div class="my-3">
+    <div>
       <div id="like_buttons_<%= @event.id %>">
        <%= render "guests/likes/like", event: @event %>
      </div>
@@ -70,7 +69,7 @@
   <div class="comments my-3">
     <%= form_with(model:[@event, @comment], local: true) do |f| %>
       <div class="row my-3">
-        <div class="col-md-9"><%= f.text_area :comment_content, :size=>"60x3",placeholder: "コメントする" %></div>
+        <div class="col-md-9"><%= f.text_area :comment_content,placeholder: "コメントする", class: "input" %></div>
         <div class="col-md-3"><%= f.submit "送信する", class: "btn btn-success mb-4" %></div>
       </div>
     <% end %>
@@ -91,11 +90,11 @@
       </div>
       <div class="d-flex bd-highlight">
           <div class="p-2 w-100 bd-highlight">
-            <%= comment.comment_content %>
+             <p class="text-break"><%= simple_format(comment.comment_content) %></p>
           </div>
         <% if comment.guest == current_guest %>
           <div class="p-2 w-25 bd-highlight">
-            <%= link_to "削除", event_comment_path(comment.event, comment), method: :delete, class: "btn-sm btn-danger" %>
+            <%= link_to "削除", event_comment_path(comment.event, comment), method: :delete, class: "btn btn-danger" %>
           </div>
         <% end %>
       </div>

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     when Admin
       admins_root_path
     when Host
-      hosts_host_path(current_host.id)
+      hosts_my_page_path
     when Guest
       root_path
     end

@@ -1,7 +1,7 @@
 class Guests::EventsController < ApplicationController
-   before_action :authenticate_guest!
+  before_action :authenticate_guest!
   def index
-    @events = Event.all.order(created_at: :desc).page(params[:page]).per(5)
+    @events = Event.all.order(created_at: :desc).page(params[:page]).per(10)
     @like = Like.new
   end
 
@@ -22,5 +22,4 @@ class Guests::EventsController < ApplicationController
     end
     render :index
   end
-
 end

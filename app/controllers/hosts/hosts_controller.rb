@@ -1,11 +1,12 @@
 class Hosts::HostsController < ApplicationController
-   before_action :correct_host, only:[:show, :edit, :update]
-   def index
-     @hosts =Host.all.order(created_at: :desc).page(params[:page]).per(10)
-   end
+  before_action :authenticate_host!
+  before_action :correct_host, only: %i[edit update]
+  def index
+    @hosts = Host.all.order(created_at: :desc).page(params[:page]).per(10)
+  end
 
   def show
-    @host = current_host
+    @host = Host.find(params[:id])
   end
 
   def edit
@@ -33,7 +34,7 @@ class Hosts::HostsController < ApplicationController
   end
 
   def search
-    @hosts = Host.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(5)
+    @hosts = Host.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(10)
     @keyword = params[:keyword]
     render :index
   end
@@ -46,8 +47,6 @@ class Hosts::HostsController < ApplicationController
 
   def correct_host
     @host = Host.find(params[:id])
-    unless @host == current_host
-      redirect_to hosts_host_path(current_host.id)
-    end
+    redirect_to hosts_host_path(current_host.id) unless @host == current_host
   end
 end

@@ -7,8 +7,8 @@
     </p>
     <div class="my-3">
       <p class="mr-3">
-        <%= link_to "退会しない", hosts_host_path(current_host.id) %>
-        <span class="ml-3"><%= link_to "退会する", hosts_hosts_withdraw_path, method: :patch, "data-confirm" => "本当に退会しますか" %></span>
+        <%= link_to "退会しない", hosts_host_path(current_host.id), class: "btn btn-primary" %>
+        <span class="ml-3"><%= link_to "退会する", hosts_hosts_withdraw_path(@host), class: "btn btn-danger", method: :patch, "data-confirm" => "本当に退会しますか" %></span>
       </p>
     </div>
   </div>

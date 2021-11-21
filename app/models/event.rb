@@ -13,6 +13,8 @@ class Event < ApplicationRecord
   validates :address, presence: true
   validates :date_and_time, presence: true
   validates :holding_flag, presence: true
+  validates :tag_maps, presence: true
+
   attachment :image
 
   enum prefecture: {
@@ -31,7 +33,7 @@ class Event < ApplicationRecord
   }
 
   def self.search(keyword)
-    where(["title like? OR introduction like?", "%#{keyword}%", "%#{keyword}%"])
+    where(['title like? OR introduction like?', "%#{keyword}%", "%#{keyword}%"])
   end
 
   def save_event_tag(tags)
@@ -48,5 +50,4 @@ class Event < ApplicationRecord
       self.tags << event_tag
     end
   end
-
 end

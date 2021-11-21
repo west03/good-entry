@@ -1,6 +1,6 @@
 class Hosts::EventsController < ApplicationController
   before_action :authenticate_host!
-  before_action :correct_host, only:[:edit]
+  before_action :correct_host, only: [:edit]
   def index
     @events = Event.all.order(created_at: :desc).page(params[:page]).per(10)
   end
@@ -33,15 +33,15 @@ class Hosts::EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
     @genres = current_host.genres
-    @tag_list = @event.tags.pluck(:name).join(",")
+    @tag_list = @event.tags.pluck(:name).join(',')
   end
 
   def update
     @event = Event.find(params[:id])
     @genres = current_host.genres
     if params[:event][:name].present?
-    tag_list = params[:event][:name].split(',')
-    @event.save_event_tag(tag_list)
+      tag_list = params[:event][:name].split(',')
+      @event.save_event_tag(tag_list)
     end
     if @event.update(event_params)
       redirect_to hosts_event_path(@event.id)
@@ -68,14 +68,12 @@ class Hosts::EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:host_id, :title, :image, :introduction, :genre_id, :date_and_time, :address, :prefecture, :holding_flag)
+    params.require(:event).permit(:host_id, :title, :image, :introduction, :genre_id, :date_and_time, :address,
+                                  :prefecture, :holding_flag)
   end
 
   def correct_host
     @host = Host.find(current_host.id)
-    unless @host == current_host
-      redirect_to hosts_events_path
-    end
+    redirect_to hosts_events_path unless @host == current_host
   end
-
 end

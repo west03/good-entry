@@ -2,8 +2,8 @@
   <h2><%= @host.name %>の情報編集</h2>
     <% if @host.errors.any? %>
       <%= @host.errors.count %>件のエラーが発生しました<br>
-      <% @host.errors.full_messages.each do |message| %>
-        <%= message %><br>
+      <% @host.errors.full_messages.each do |message| %><br>
+        <%= message %>
       <% end %>
     <% end %>
   <div class="row">
@@ -15,23 +15,23 @@
     <%= form_with model: @host, url: admins_host_path(@host.id), local: true do |f| %>
       <div class="field row my-3">
         <div class="col-md-3"><%= f.label :名前 %></div>
-        <div class="col-md-9"><%= f.text_field :name %></div>
+        <div class="col-md-9"><%= f.text_field :name, size: 40 %></div>
       </div>
       <div class="field row my-3">
         <div class="col-md-3"><%= f.label :郵便番号 %></div>
-        <div class="col-md-9"><%= f.text_field :postal_code %></div>
+        <div class="col-md-9"><%= f.text_field :postal_code, size: 40 %></div>
       </div>
       <div class="field row my-3">
         <div class="col-md-3"><%= f.label :住所 %></div>
-        <div class="col-md-9"><%= f.text_field :address %></div>
+        <div class="col-md-9"><%= f.text_field :address, size: 40 %></div>
       </div>
       <div class="field row my-3">
         <div class="col-md-3"><%= f.label :電話番号 %></div>
-        <div class="col-md-9"><%= f.text_field :telephone_number %></div>
+        <div class="col-md-9"><%= f.text_field :telephone_number, size: 40 %></div>
       </div>
       <div class="field row my-3">
         <div class="col-md-3"><%= f.label :メールアドレス %></div>
-        <div class="col-md-9"><%= f.text_field :email %></div>
+        <div class="col-md-9"><%= f.text_field :email, size: 40 %></div>
       </div>
       <div class="field row my-3">
         <div class="col-md-3"><%= f.label :ステータス %></div>

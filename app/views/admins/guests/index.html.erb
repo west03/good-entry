@@ -16,6 +16,7 @@
         <th>名前</th>
         <th>フリカナ</th>
         <th>ステータス</th>
+        <th>イベント参加</th>
         <th></th>
       </tr>
     </thaed>
@@ -32,6 +33,7 @@
             <p class="text-secondary">退会</p>
           <% end %>
         </td>
+        <td><%= guest.event_entries.count %></td>
         <td><%= link_to "詳細へ", admins_guest_path(guest.id), class: "btn-sm btn btn-primary" %></td>
       </tr>
     </tbody>

@@ -2,9 +2,9 @@ class Guest < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :event_entries
-  has_many :comments
-  has_many :likes
+  has_many :event_entries, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   validates :last_name, presence: true
   validates :first_name, presence: true
@@ -13,16 +13,13 @@ class Guest < ApplicationRecord
   validates :address, presence: true
   validates :postal_code, presence: true
   validates :telephone_number, presence: true
-  validates :is_active, presence: true
-
+  validates :is_active, inclusion: [true, false]
 
   def already_liked?(event)
-    self.likes.exists?(event_id: event.id)
+    likes.exists?(event_id: event.id)
   end
 
   def self.search(keyword)
-    where(["last_name like? OR first_name like? ", "%#{keyword}%",  "%#{keyword}%"])
+    where(['last_name like? OR first_name like? ', "%#{keyword}%", "%#{keyword}%"])
   end
-
-
 end

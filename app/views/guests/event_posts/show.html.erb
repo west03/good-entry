@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <h2 class="my-3 col-md-6"><%= @host.name %>のイベント一覧</h2>
-    <div class="search-form  col-md-6 text-right">
+    <div class="search-form  col-md-6 text-right my-3">
       <%= form_with url: event_post_event_post_search_path(@host.id), method: :get, local: true do |f| %>
         <%= f.label :" イベント検索:" %>
         <%= f.text_field :keyword, value: @keyword %>
@@ -9,24 +9,7 @@
       <% end %>
     </div>
   </div>
-  <% @hosts.each do |event| %>
-  <div class="row my-5">
-    <div class="col-md-5 my-3">
-      <%= link_to event_path(event.id) do %>
-        <%= attachment_image_tag event,:image, :fill, 300,300, format: 'jpeg', fallback: "no_image.png", size: '300x300'%>
-      <% end %>
-    </div>
-    <div class="col-md-6 m-3">
-      <%= link_to event_path(event.id) do %>
-        <p>タイトル<br><%= event.title %></p>
-      <% end %>
-      <p>内容<br><%= event.introduction.truncate(40) %></p>
-      <p>開催日時<br><%= event.date_and_time %></p>
-    </div>
-    <div class="col-1"></div>
-  </div>
-  <% end %>
   <div>
-    <%= paginate @hosts %>
+     <%= render 'event/index', events: @hosts %>
   </div>
 </div>

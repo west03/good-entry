@@ -1,7 +1,8 @@
 class Hosts::GenresController < ApplicationController
   before_action :authenticate_host!
+  before_action :current_host
   def index
-    @genres = current_host.genres
+    @genres = current_host.genres.order(created_at: :desc).page(params[:page]).per(25)
     @genre = Genre.new
   end
 

@@ -1,6 +1,6 @@
 class Guests::GuestsController < ApplicationController
-  before_action :correct_guest, only: [:edit, :update]
-
+  before_action :authenticate_guest!
+  before_action :correct_guest, only: %i[edit update]
   def show
     @guest = current_guest
   end
@@ -10,7 +10,7 @@ class Guests::GuestsController < ApplicationController
   end
 
   def update
-     @guest = Guest.find(current_guest.id)
+    @guest = Guest.find(current_guest.id)
     if @guest.update(guest_params)
       redirect_to my_page_path
     else
@@ -24,22 +24,23 @@ class Guests::GuestsController < ApplicationController
 
   def withdraw
     @guest = Guest.find(current_guest.id)
-    @guest.update(is_active: false)
+    if @guest.update(is_active: false)
     reset_session
     redirect_to root_path
+    else
+      render :show
+    end
   end
 
   private
 
   def guest_params
-    params.require(:guest).permit(:last_name, :first_name, :last_name_kana,  :first_name_kana,:postal_code, :address, :telephone_number, :email)
+    params.require(:guest).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address,
+                                  :telephone_number, :email)
   end
 
   def correct_guest
     @guest = Guest.find(current_guest.id)
-    unless @guest == current_guest
-      redirect_to my_page_path
-    end
+    redirect_to my_page_path unless @guest == current_guest
   end
-
 end

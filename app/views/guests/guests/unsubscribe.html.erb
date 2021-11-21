@@ -7,8 +7,8 @@
     </p>
     <div class="my-3">
       <p class="mr-3">
-        <%= link_to "退会しない", root_path %>
-        <span class="ml-3"><%= link_to "退会する", guests_withdraw_path, method: :patch, "data-confirm" => "本当に退会しますか" %></span>
+        <%= link_to "退会しない", root_path, class: "btn btn-primary" %>
+        <span class="ml-3"><%= link_to "退会する", guests_withdraw_path(@guest), class: "btn btn-danger",  method: :patch, "data-confirm" => "本当に退会しますか" %></span>
       </p>
     </div>
   </div>

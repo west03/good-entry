@@ -33,10 +33,13 @@
         <td><%= genre.name %></td>
         <td align="center">
           <%= link_to "編集する",  edit_hosts_genre_path(genre), class: "btn-sm btn-success mr-3" %>
-          <%= link_to "削除する",  hosts_genre_path(genre.id), method: :delete, class: "class:'btn-sm btn-danger" %>
+          <%= link_to "削除する",  hosts_genre_path(genre.id), method: :delete, class: "btn-sm btn-danger" %>
         </td>
       </tr>
       <% end %>
     </tbody>
   </table>
+   <div class="pagination">
+    <%= paginate @genres %>
+  </div>
 </div>

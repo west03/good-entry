@@ -32,5 +32,6 @@ ja:
         date_and_time: 開催日時
         holding_flag: 開催ステータス
         genre: 種類
+        tag_maps: タグ
       genre:
         name: 名前

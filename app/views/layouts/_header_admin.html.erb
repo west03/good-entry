@@ -9,16 +9,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <%= link_to "イベント一覧", admins_events_path %>
+          <%= link_to "イベント一覧", admins_events_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "host一覧", admins_hosts_path %>
+          <%= link_to "host一覧", admins_hosts_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "guest一覧", admins_guests_path %>
+          <%= link_to "guest一覧", admins_guests_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
         </li>
       </ul>
     </div>

@@ -6,14 +6,18 @@ Rails.application.routes.draw do
   root to: 'homes#top'
 
   namespace :hosts do
-    get 'hosts/unsubscribe' => 'hosts#unsubscribe', as: 'hosts_unsubscribe'
+    get  'my_page' => 'homes#top'
+    get 'hosts/unsubscribe' => 'hosts#unsubscribe'
     patch 'hosts/withdraw' => 'hosts#withdraw'
     resources :hosts, only:[:index,:show, :edit, :update]
     resources :events
     resources :guests, only:[:show]
     resources :genres, except:[:new, :show]
     resources :event_posts, only:[:index, :show] do
-      get 'event_post_guest_search' => 'event_posts#guest_search'
+      get 'event_post_search' => 'event_posts#event_search'
+    end
+    resources :event_entries, only:[:show] do
+      get 'event_entry_search' => 'event_entries#search'
     end
     get 'host_search' => 'hosts#search'
     get 'event_search' => 'events#search'
@@ -41,7 +45,7 @@ Rails.application.routes.draw do
 
  scope module: :guests do
     resource :guests, only:[:edit, :update]
-    get 'guests/my_page' => 'guests#show', as: 'my_page'
+    get 'my_page' => 'guests#show', as: 'my_page'
     get 'guests/unsubscribe' => 'guests#unsubscribe'
     patch 'guests/withdraw' => 'guests#withdraw'
     resources :hosts, only:[:index, :show]

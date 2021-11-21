@@ -8,18 +8,18 @@
     </p>
   </div>
   <p class="my-3">新着情報</p>
-  <div class="row">
+  <div class="card-columns">
     <% @event.first(2).each do |event| %>
-    <div class="col-md-6 px-2 card" style="width: 18rem;">
-      <div class="img_frame">
-        <%= link_to event_path(event.id) do %>
-          <div class="bd-placeholder-img card-img-top my-3">
-            <%= attachment_image_tag event, :image,  format: 'jpeg', fallback: "no_image.png", :class => "card-img-top", :alt => "Card image cap" %>
-          </div>
-        </div>
-        <p class="card-title my-4 ml-3"><%= event.title %></p>
+    <div class="card" style="width: 100%;">
+      <%= link_to event_path(event.id) do %>
+        <%= attachment_image_tag event, :image,  format: 'jpeg', fallback: "no_image.png", :class => "card-img-top object-fit p-1", :alt => "Card image cap" %>
       <% end %>
-      <p class="card-text mb-3 ml-3">開催日<span class="text-right"><%= event.date_and_time %></span></p>
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to event.title, event_path(event.id) %></h5>
+        <p class="card-text" style="font-size: 16px;">
+          開催日: <span><%= event.date_and_time %></span>
+        </p>
+      </div>
     </div>
     <% end %>
   </div>
