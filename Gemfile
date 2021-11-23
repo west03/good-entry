@@ -73,7 +73,6 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'jquery-rails'
 
 gem 'enum_help'
-gem 'pry-byebug'
 
 group :development do
   gem 'rubocop', require: false
@@ -82,9 +81,12 @@ end
 
 gem 'rails-i18n'
 
-gem 'pry-rails'
-
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
+end
+group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
