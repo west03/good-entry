@@ -7,7 +7,7 @@ class Hosts::GenresController < ApplicationController
   end
 
   def create
-    @genres = Genre.all
+    @genres =current_host.genres.order(created_at: :desc).page(params[:page]).per(25)
     @genre = Genre.new(genre_params)
     if @genre.save
       redirect_to hosts_genres_path
