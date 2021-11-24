@@ -10,7 +10,7 @@
     <div>
       <div class="field row my-3">
         <div class="col-4"><%= f.label :タイトル %></div>
-        <div class="col-8"><%= f.text_field :title %></div>
+        <div class="col-8"><%= f.text_field :title,  size: 30 %></div>
       </div>
       <div class="field row my-3">
         <div class="col-4"><%= f.label :イベント画像 %></div>
@@ -18,7 +18,7 @@
       </div>
       <div class="field row my-3">
         <div class="col-4"><%= f.label :内容詳細 %></div>
-        <div class="col-8"><%= f.text_area :introduction %></div>
+        <div class="col-8"><%= f.text_area :introduction, size: "50x8" %></div>
       </div>
        <div class="field row my-3">
         <div class="col-4"><%= f.label :種類 %></div>
@@ -26,17 +26,17 @@
       </div>
       <div class="field row my-3">
         <div class="col-4"><%= f.label :開催日時 %></div>
-        <div class="col-8"><%= f.text_field :date_and_time %></div>
+        <div class="col-8"><%= f.text_field :date_and_time, size: 30 %></div>
       </div>
        <div class="field row my-3">
         <div class="col-4"><%= f.label :開催場所 %></div>
         <div class="col-8"><%= f.select :prefecture, Event.prefectures.keys, {prompt: "選択してください"}, class: "prefecture-select" %></div>
         <div class="col-4"></div>
-        <div class="col-8"><%= f.text_field :address %></div>
+        <div class="col-8"><%= f.text_field :address, size: 30 %></div>
       </div>
       <div class="field row my-3">
         <div class="col-4"><%= f.label :タグ %></div>
-        <div class="col-8"><%= f.text_field :name, value: @tag_list %></div>
+        <div class="col-8"><%= f.text_field :name, size: 30, value: @tag_list %></div>
       </div>
        <div class="field row my-3">
         <div class="col-4"><%= f.label :ステータス %></div>
@@ -44,7 +44,7 @@
       </div>
       <div class="actions row my-3">
         <div class="col-4"></div>
-        <div class="col-4"><%= f.submit "更新する", class: "btn-sm btn-primary" %></div>
+        <div class="col-4"><%= f.submit "更新する", class: "btn btn-success" %></div>
         <div class="col-4"></div>
       </div>
     </div>
