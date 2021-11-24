@@ -46,8 +46,9 @@
         <% end %>
         </h5>
         <p class="card-text">
-          <p class="text-break">内容<br><%= simple_format(event.introduction.truncate(80)) %></p>
+          <p class="text-break">内容<br><%= simple_format(event.introduction.truncate(40)) %></p>
       <p>開催日時<br><%= event.date_and_time %></p>
+      <p>開催場所<br><%= event.prefecture %></p>
       <p>参加人数:<%= event.event_entries.count %></p>
       <p>いいね:<%= event.likes.count %></p>
       <p>コメント:<%= event.comments.count %></p>
